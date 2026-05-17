@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import android.app.Activity
 import com.fastflow.app.R
-import com.fastflow.app.core.locale.AppLocaleManager
+import com.fastflow.app.presentation.components.LanguageSelector
 import com.fastflow.app.presentation.localization.localizedName
 import com.fastflow.app.presentation.localization.localizedPlanSummary
 
@@ -68,34 +68,11 @@ fun ProfileScreen(
                 onClick = onOpenNotifications
             )
 
-            Text(
-                stringResource(R.string.language_label),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(top = 8.dp)
+            LanguageSelector(
+                selectedTag = uiState.languageTag,
+                onSelect = { viewModel.selectLanguage(it, activity) },
+                modifier = Modifier.padding(top = 4.dp)
             )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                FilterChip(
-                    selected = uiState.languageTag == AppLocaleManager.LANGUAGE_FRENCH,
-                    onClick = {
-                        viewModel.selectLanguage(AppLocaleManager.LANGUAGE_FRENCH, activity)
-                    },
-                    label = { Text(stringResource(R.string.language_french)) },
-                    modifier = Modifier.weight(1f)
-                )
-                FilterChip(
-                    selected = uiState.languageTag == AppLocaleManager.LANGUAGE_ENGLISH,
-                    onClick = {
-                        viewModel.selectLanguage(AppLocaleManager.LANGUAGE_ENGLISH, activity)
-                    },
-                    label = { Text(stringResource(R.string.language_english)) },
-                    modifier = Modifier.weight(1f)
-                )
-            }
 
             Divider(modifier = Modifier.padding(vertical = 8.dp))
 

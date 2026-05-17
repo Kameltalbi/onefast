@@ -29,7 +29,7 @@
     <string name="language_label">Language</string>
     <string name="language_french">Français</string>
     <string name="language_english">English</string>
-    <string name="profile_language_desc">French or English</string>
+    <string name="profile_language_desc">French, English, Spanish, German, Portuguese, Arabic, Turkish</string>
 
     <string name="fasting_status_active">Fasting</string>
     <string name="fasting_status_eating">Eating window</string>

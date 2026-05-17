@@ -33,7 +33,7 @@
     <string name="language_label">Langue</string>
     <string name="language_french">Français</string>
     <string name="language_english">English</string>
-    <string name="profile_language_desc">Français ou English</string>
+    <string name="profile_language_desc">Français, English, Español, Deutsch, Português, العربية, Türkçe</string>
 
     <!-- Timer -->
     <string name="fasting_status_active">Jeûne en cours</string>

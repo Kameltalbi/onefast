@@ -8,16 +8,21 @@ object AppLocaleManager {
 
     const val LANGUAGE_FRENCH = "fr"
     const val LANGUAGE_ENGLISH = "en"
+    const val LANGUAGE_SPANISH = "es"
+    const val LANGUAGE_GERMAN = "de"
+    const val LANGUAGE_PORTUGUESE = "pt"
+    const val LANGUAGE_ARABIC = "ar"
+    const val LANGUAGE_TURKISH = "tr"
 
-    fun supportedTags(): List<String> = listOf(LANGUAGE_FRENCH, LANGUAGE_ENGLISH)
+    fun supportedTags(): List<String> = AppLanguages.all.map { it.tag }
 
     fun defaultLanguageTag(): String {
         val system = Locale.getDefault().language.lowercase(Locale.ROOT)
-        return if (system == LANGUAGE_FRENCH) LANGUAGE_FRENCH else LANGUAGE_ENGLISH
+        return if (system in supportedTags()) system else LANGUAGE_ENGLISH
     }
 
     fun apply(languageTag: String) {
-        val tag = if (languageTag in supportedTags()) languageTag else defaultLanguageTag()
+        val tag = languageTag.takeIf { it in supportedTags() } ?: defaultLanguageTag()
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
     }
 }

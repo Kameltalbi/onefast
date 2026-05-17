@@ -28,12 +28,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import android.app.Activity
 import com.fastflow.app.R
-import com.fastflow.app.core.locale.AppLocaleManager
 import com.fastflow.app.domain.model.FastingExperienceLevel
 import com.fastflow.app.domain.model.FastingType
 import com.fastflow.app.domain.model.OnboardingGoal
 import com.fastflow.app.domain.onboarding.FastingPlanRecommender
 import com.fastflow.app.domain.onboarding.PlanDifficulty
+import com.fastflow.app.presentation.components.LanguageSelector
 import com.fastflow.app.presentation.theme.AccentBlue
 import com.fastflow.app.presentation.theme.AccentOrange
 import com.fastflow.app.presentation.localization.localizedName
@@ -130,61 +130,6 @@ fun OnboardingScreen(
             }
         }
     }
-}
-
-@Composable
-private fun LanguageSelector(
-    selectedTag: String,
-    onSelect: (String) -> Unit
-) {
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = stringResource(R.string.language_label),
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            LanguageChip(
-                label = stringResource(R.string.language_french),
-                selected = selectedTag == AppLocaleManager.LANGUAGE_FRENCH,
-                onClick = { onSelect(AppLocaleManager.LANGUAGE_FRENCH) },
-                modifier = Modifier.weight(1f)
-            )
-            LanguageChip(
-                label = stringResource(R.string.language_english),
-                selected = selectedTag == AppLocaleManager.LANGUAGE_ENGLISH,
-                onClick = { onSelect(AppLocaleManager.LANGUAGE_ENGLISH) },
-                modifier = Modifier.weight(1f)
-            )
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun LanguageChip(
-    label: String,
-    selected: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    FilterChip(
-        selected = selected,
-        onClick = onClick,
-        label = { Text(label, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal) },
-        modifier = modifier,
-        colors = FilterChipDefaults.filterChipColors(
-            selectedContainerColor = AccentBlue.copy(alpha = 0.35f),
-            selectedLabelColor = MaterialTheme.colorScheme.onBackground
-        )
-    )
 }
 
 @Composable
