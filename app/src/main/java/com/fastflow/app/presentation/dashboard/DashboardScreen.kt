@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.fastflow.app.R
 import com.fastflow.app.domain.model.FastingStatus
 import com.fastflow.app.presentation.components.FastingCircle
+import com.fastflow.app.presentation.localization.localizedName
 import com.fastflow.app.presentation.components.GiantActionButton
 import com.fastflow.app.presentation.components.MotivationBanner
 import com.fastflow.app.presentation.components.SecondaryActionButton
@@ -58,7 +59,7 @@ fun DashboardScreen(
         val session = uiState.currentSession
         if (session != null && session.isActive()) {
             Text(
-                text = session.fastingType.displayName,
+                text = session.fastingType.localizedName(),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -120,7 +121,7 @@ fun DashboardScreen(
             uiState.defaultPlan?.let { plan ->
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = stringResource(R.string.dashboard_plan_label, plan.displayName),
+                    text = stringResource(R.string.dashboard_plan_label, plan.localizedName()),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                 )

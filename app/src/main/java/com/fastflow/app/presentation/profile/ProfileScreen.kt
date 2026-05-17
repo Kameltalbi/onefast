@@ -10,12 +10,16 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import android.app.Activity
 import com.fastflow.app.R
-import com.fastflow.app.domain.model.FastingType
+import com.fastflow.app.core.locale.AppLocaleManager
+import com.fastflow.app.presentation.localization.localizedName
+import com.fastflow.app.presentation.localization.localizedPlanSummary
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,6 +28,7 @@ fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val activity = LocalContext.current as Activity
 
     Scaffold(
         topBar = {
@@ -63,6 +68,35 @@ fun ProfileScreen(
                 onClick = onOpenNotifications
             )
 
+            Text(
+                stringResource(R.string.language_label),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                FilterChip(
+                    selected = uiState.languageTag == AppLocaleManager.LANGUAGE_FRENCH,
+                    onClick = {
+                        viewModel.selectLanguage(AppLocaleManager.LANGUAGE_FRENCH, activity)
+                    },
+                    label = { Text(stringResource(R.string.language_french)) },
+                    modifier = Modifier.weight(1f)
+                )
+                FilterChip(
+                    selected = uiState.languageTag == AppLocaleManager.LANGUAGE_ENGLISH,
+                    onClick = {
+                        viewModel.selectLanguage(AppLocaleManager.LANGUAGE_ENGLISH, activity)
+                    },
+                    label = { Text(stringResource(R.string.language_english)) },
+                    modifier = Modifier.weight(1f)
+                )
+            }
+
             Divider(modifier = Modifier.padding(vertical = 8.dp))
 
             Text(
@@ -81,12 +115,12 @@ fun ProfileScreen(
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
                         Text(
-                            plan.displayName,
+                            plan.localizedName(),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            plan.formatPlanSummary(),
+                            plan.localizedPlanSummary(),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                         )

@@ -20,7 +20,52 @@
     <string name="plan_20_4">20:4 Warrior</string>
     <string name="plan_omad">OMAD</string>
     <string name="plan_custom">Personnalisé</string>
+    <string name="plan_12_12">12:12 Débutant</string>
+    <string name="plan_14_10">14:10 Léger</string>
+    <string name="plan_summary_format">%1$dh jeûne / %2$dh repas</string>
     <string name="widget_description">Timer de jeûne OneFast</string>
+    <string name="widget_status_fasting">Jeûne</string>
+    <string name="widget_status_paused">Pause</string>
+    <string name="widget_status_inactive">Inactif</string>
+    <string name="widget_tap_to_start">Appuyez pour démarrer</string>
+
+    <!-- Langue -->
+    <string name="language_label">Langue</string>
+    <string name="language_french">Français</string>
+    <string name="language_english">English</string>
+    <string name="profile_language_desc">Français ou English</string>
+
+    <!-- Timer -->
+    <string name="fasting_status_active">Jeûne en cours</string>
+    <string name="fasting_status_eating">Fenêtre repas</string>
+    <string name="fasting_elapsed">Écoulé : %1$s</string>
+    <string name="fasting_remaining">Restant : %1$s</string>
+
+    <!-- Motivation -->
+    <string name="motivation_paused">Prenez une pause, puis reprenez quand vous êtes prêt.</string>
+    <string name="motivation_fat_burn">Votre corps entre en phase de combustion des graisses. Continuez !</string>
+    <string name="motivation_almost_done">Plus que %1$d h — vous y êtes presque !</string>
+    <string name="motivation_hydrate">Hydratez-vous régulièrement. Vous progressez très bien.</string>
+    <string name="motivation_every_minute">Chaque minute compte. Vous construisez une habitude solide.</string>
+    <string name="motivation_streak_7">Bravo ! %1$d jours consécutifs. Vous êtes une machine.</string>
+    <string name="motivation_streak_3">Série de %1$d jours — la régularité paie toujours.</string>
+    <string name="motivation_ready_start">Prêt à commencer ? Un seul jeûne peut tout changer.</string>
+    <string name="motivation_weight_lost">Vous avez perdu %.1f kg. Continuez ainsi !</string>
+    <string name="motivation_consistency">La constance bat la perfection. Démarrez votre prochain jeûne.</string>
+
+    <!-- Dialogues plan / poids -->
+    <string name="dialog_choose_plan">Choisir un plan de jeûne</string>
+    <string name="dialog_custom_plan">Plan personnalisé</string>
+    <string name="dialog_custom_plan_question">Combien d\'heures souhaitez-vous jeûner ?</string>
+    <string name="dialog_fasting_hours_label">Heures de jeûne (1-23)</string>
+    <string name="dialog_eating_window_hours">Fenêtre repas : %1$dh</string>
+    <string name="dialog_auto_start_title">Démarrage automatique</string>
+    <string name="dialog_auto_start_desc">Lance le jeûne à l\'heure choisie</string>
+    <string name="dialog_time_label">Heure : %1$s</string>
+    <string name="weight_goal_dialog_title">Objectif de poids</string>
+    <string name="weight_goal_dialog_desc">Définissez le poids que vous souhaitez atteindre.</string>
+    <string name="weight_goal_current">Poids actuel : %.1f kg</string>
+    <string name="weight_goal_input_label">Objectif (kg)</string>
     
     <!-- Stats -->
     <string name="stats_title">Statistiques</string>

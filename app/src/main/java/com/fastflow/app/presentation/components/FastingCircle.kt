@@ -15,7 +15,9 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import com.fastflow.app.R
 import com.fastflow.app.presentation.theme.AccentBlue
 import com.fastflow.app.presentation.theme.AccentOrange
 import kotlin.math.roundToInt
@@ -75,7 +77,11 @@ fun FastingCircle(
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = if (isFasting) "Jeûne en cours" else "Fenêtre repas",
+                text = if (isFasting) {
+                    stringResource(R.string.fasting_status_active)
+                } else {
+                    stringResource(R.string.fasting_status_eating)
+                },
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
@@ -84,7 +90,7 @@ fun FastingCircle(
             
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = "Écoulé: $timeElapsed",
+                    text = stringResource(R.string.fasting_elapsed, timeElapsed),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -92,7 +98,7 @@ fun FastingCircle(
                 Spacer(modifier = Modifier.height(4.dp))
                 
                 Text(
-                    text = "Restant: $timeRemaining",
+                    text = stringResource(R.string.fasting_remaining, timeRemaining),
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.SemiBold,
                     color = circleColor

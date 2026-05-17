@@ -14,7 +14,7 @@ import com.fastflow.app.domain.repository.FastingRepository
 import com.fastflow.app.domain.repository.StatsRepository
 import com.fastflow.app.domain.usecase.fasting.*
 import com.fastflow.app.domain.usecase.stats.GetUserStatsUseCase
-import com.fastflow.app.domain.util.MotivationProvider
+import com.fastflow.app.presentation.localization.MotivationMessageProvider
 import com.fastflow.app.widget.WidgetStateManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -37,7 +37,8 @@ class DashboardViewModel @Inject constructor(
     private val smartNotificationScheduler: SmartNotificationScheduler,
     private val streakMilestoneNotifier: StreakMilestoneNotifier,
     private val notificationHelper: NotificationHelper,
-    private val widgetStateManager: WidgetStateManager
+    private val widgetStateManager: WidgetStateManager,
+    private val motivationMessageProvider: MotivationMessageProvider
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(DashboardUiState())
@@ -51,7 +52,7 @@ class DashboardViewModel @Inject constructor(
                 _uiState.update { state ->
                     state.copy(
                         currentSession = session,
-                        phaseMessage = MotivationProvider.getMessage(session, state.userStats)
+                        phaseMessage = motivationMessageProvider.getMessage(session, state.userStats)
                     )
                 }
                 widgetStateManager.update(session)
@@ -63,7 +64,7 @@ class DashboardViewModel @Inject constructor(
                 _uiState.update { state ->
                     state.copy(
                         userStats = stats,
-                        phaseMessage = MotivationProvider.getMessage(state.currentSession, stats)
+                        phaseMessage = motivationMessageProvider.getMessage(state.currentSession, stats)
                     )
                 }
             }
@@ -90,7 +91,7 @@ class DashboardViewModel @Inject constructor(
                     _uiState.update { state ->
                         state.copy(
                             tick = tick,
-                            phaseMessage = MotivationProvider.getMessage(session, state.userStats)
+                            phaseMessage = motivationMessageProvider.getMessage(session, state.userStats)
                         )
                     }
                     widgetStateManager.update(session)

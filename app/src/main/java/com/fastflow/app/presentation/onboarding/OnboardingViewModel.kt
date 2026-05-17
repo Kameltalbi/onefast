@@ -1,7 +1,9 @@
 package com.fastflow.app.presentation.onboarding
 
+import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fastflow.app.core.locale.AppLocaleManager
 import com.fastflow.app.data.preferences.PreferencesManager
 import com.fastflow.app.domain.model.FastingExperienceLevel
 import com.fastflow.app.domain.model.FastingType
@@ -18,6 +20,7 @@ import javax.inject.Inject
 
 data class OnboardingUiState(
     val step: Int = 0,
+    val languageTag: String = AppLocaleManager.LANGUAGE_FRENCH,
     val goal: OnboardingGoal? = null,
     val age: Int = 30,
     val heightCm: Int = 170,
@@ -34,8 +37,10 @@ data class OnboardingUiState(
     companion object {
         const val TOTAL_STEPS: Int = 5
     }
+
     fun canAdvanceFromProfile(): Boolean = age in 16..99 && heightCm in 100..250 &&
         weightKg in 40f..250f && targetWeightKg in 40f..250f
+
     fun canAdvanceFromLevel(): Boolean = experience != null
 }
 
@@ -47,6 +52,28 @@ class OnboardingViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow(OnboardingUiState())
     val uiState: StateFlow<OnboardingUiState> = _uiState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            val saved = preferencesManager.getAppLanguageOnce()
+            val tag = saved ?: AppLocaleManager.defaultLanguageTag()
+            _uiState.update { it.copy(languageTag = tag) }
+            if (saved == null) {
+                preferencesManager.setAppLanguage(tag)
+                AppLocaleManager.apply(tag)
+            }
+        }
+    }
+
+    fun selectLanguage(languageTag: String, activity: Activity) {
+        if (languageTag == _uiState.value.languageTag) return
+        viewModelScope.launch {
+            preferencesManager.setAppLanguage(languageTag)
+            AppLocaleManager.apply(languageTag)
+            _uiState.update { it.copy(languageTag = languageTag) }
+            activity.recreate()
+        }
+    }
 
     fun nextStep() {
         _uiState.update { state ->
@@ -98,6 +125,8 @@ class OnboardingViewModel @Inject constructor(
         _uiState.update { it.copy(isSaving = true) }
         viewModelScope.launch {
             val plan = FastingPlanRecommender.recommend(state.goal, state.experience)
+            preferencesManager.setAppLanguage(state.languageTag)
+            AppLocaleManager.apply(state.languageTag)
             preferencesManager.setDefaultFastingType(plan.name)
             preferencesManager.setUserAge(state.age)
             preferencesManager.setUserHeightCm(state.heightCm.toFloat())

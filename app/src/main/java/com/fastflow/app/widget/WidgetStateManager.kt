@@ -4,8 +4,10 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import com.fastflow.app.R
 import com.fastflow.app.domain.model.FastingSession
 import com.fastflow.app.domain.model.FastingStatus
+import com.fastflow.app.presentation.localization.getLabel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -24,16 +26,21 @@ class WidgetStateManager @Inject constructor(
             val hours = TimeUnit.MILLISECONDS.toHours(remaining)
             val minutes = TimeUnit.MILLISECONDS.toMinutes(remaining) % 60
             editor.putBoolean(KEY_ACTIVE, true)
-            editor.putString(KEY_STATUS, if (session.status == FastingStatus.FASTING) "Jeûne" else "Pause")
+            val statusRes = if (session.status == FastingStatus.FASTING) {
+                R.string.widget_status_fasting
+            } else {
+                R.string.widget_status_paused
+            }
+            editor.putString(KEY_STATUS, context.getString(statusRes))
             editor.putString(KEY_TIME, String.format("%02d:%02d", hours, minutes))
             editor.putInt(KEY_PROGRESS, (session.getProgress() * 100).toInt())
-            editor.putString(KEY_PLAN, session.fastingType.displayName)
+            editor.putString(KEY_PLAN, session.fastingType.getLabel(context))
         } else {
             editor.putBoolean(KEY_ACTIVE, false)
-            editor.putString(KEY_STATUS, "Inactif")
+            editor.putString(KEY_STATUS, context.getString(R.string.widget_status_inactive))
             editor.putString(KEY_TIME, "--:--")
             editor.putInt(KEY_PROGRESS, 0)
-            editor.putString(KEY_PLAN, "Appuyez pour démarrer")
+            editor.putString(KEY_PLAN, context.getString(R.string.widget_tap_to_start))
         }
         editor.apply()
 

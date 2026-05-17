@@ -22,10 +22,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
+import android.app.Activity
 import com.fastflow.app.R
+import com.fastflow.app.core.locale.AppLocaleManager
 import com.fastflow.app.domain.model.FastingExperienceLevel
 import com.fastflow.app.domain.model.FastingType
 import com.fastflow.app.domain.model.OnboardingGoal
@@ -33,6 +36,8 @@ import com.fastflow.app.domain.onboarding.FastingPlanRecommender
 import com.fastflow.app.domain.onboarding.PlanDifficulty
 import com.fastflow.app.presentation.theme.AccentBlue
 import com.fastflow.app.presentation.theme.AccentOrange
+import com.fastflow.app.presentation.localization.localizedName
+import com.fastflow.app.presentation.localization.localizedPlanSummary
 import com.fastflow.app.presentation.theme.PrimaryBlueNight
 
 @Composable
@@ -44,6 +49,7 @@ fun OnboardingScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val authSoonMessage = stringResource(R.string.onboarding_auth_soon)
+    val activity = LocalContext.current as Activity
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -73,6 +79,8 @@ fun OnboardingScreen(
             ) { step ->
                 when (step) {
                     0 -> WelcomeStep(
+                        selectedLanguage = uiState.languageTag,
+                        onLanguageSelect = { viewModel.selectLanguage(it, activity) },
                         onStart = { viewModel.nextStep() },
                         onGoogle = {
                             scope.launch {
@@ -125,6 +133,61 @@ fun OnboardingScreen(
 }
 
 @Composable
+private fun LanguageSelector(
+    selectedTag: String,
+    onSelect: (String) -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.language_label),
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            LanguageChip(
+                label = stringResource(R.string.language_french),
+                selected = selectedTag == AppLocaleManager.LANGUAGE_FRENCH,
+                onClick = { onSelect(AppLocaleManager.LANGUAGE_FRENCH) },
+                modifier = Modifier.weight(1f)
+            )
+            LanguageChip(
+                label = stringResource(R.string.language_english),
+                selected = selectedTag == AppLocaleManager.LANGUAGE_ENGLISH,
+                onClick = { onSelect(AppLocaleManager.LANGUAGE_ENGLISH) },
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun LanguageChip(
+    label: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    FilterChip(
+        selected = selected,
+        onClick = onClick,
+        label = { Text(label, fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal) },
+        modifier = modifier,
+        colors = FilterChipDefaults.filterChipColors(
+            selectedContainerColor = AccentBlue.copy(alpha = 0.35f),
+            selectedLabelColor = MaterialTheme.colorScheme.onBackground
+        )
+    )
+}
+
+@Composable
 private fun OnboardingProgressBar(
     currentStep: Int,
     totalSteps: Int,
@@ -151,6 +214,8 @@ private fun OnboardingProgressBar(
 
 @Composable
 private fun WelcomeStep(
+    selectedLanguage: String,
+    onLanguageSelect: (String) -> Unit,
     onStart: () -> Unit,
     onGoogle: () -> Unit,
     onApple: () -> Unit
@@ -161,7 +226,14 @@ private fun WelcomeStep(
             .padding(horizontal = 28.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(24.dp))
+
+        LanguageSelector(
+            selectedTag = selectedLanguage,
+            onSelect = onLanguageSelect
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
 
         Box(
             modifier = Modifier
@@ -397,7 +469,7 @@ private fun RecommendationStep(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = plan.displayName,
+                        text = plan.localizedName(),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         color = AccentOrange
@@ -424,7 +496,7 @@ private fun RecommendationStep(
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = plan.formatPlanSummary(),
+                text = plan.localizedPlanSummary(),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.65f),
                 textAlign = TextAlign.Center

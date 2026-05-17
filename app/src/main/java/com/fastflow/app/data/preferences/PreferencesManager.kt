@@ -59,6 +59,7 @@ class PreferencesManager @Inject constructor(
         private val USER_AGE = intPreferencesKey("user_age")
         private val ONBOARDING_GOAL = stringPreferencesKey("onboarding_goal")
         private val FASTING_EXPERIENCE = stringPreferencesKey("fasting_experience")
+        private val APP_LANGUAGE = stringPreferencesKey("app_language")
         private val COMMUNITY_USER_ID = stringPreferencesKey("community_user_id")
         private val COMMUNITY_DISPLAY_NAME = stringPreferencesKey("community_display_name")
         private val COMMUNITY_SHARE_ANONYMOUSLY = booleanPreferencesKey("community_share_anonymously")
@@ -198,6 +199,18 @@ class PreferencesManager @Inject constructor(
     suspend fun setFastingExperience(level: String) {
         dataStore.edit { preferences ->
             preferences[FASTING_EXPERIENCE] = level
+        }
+    }
+
+    val appLanguage: Flow<String?> = dataStore.data.map { preferences ->
+        preferences[APP_LANGUAGE]
+    }
+
+    suspend fun getAppLanguageOnce(): String? = appLanguage.first()
+
+    suspend fun setAppLanguage(languageTag: String) {
+        dataStore.edit { preferences ->
+            preferences[APP_LANGUAGE] = languageTag
         }
     }
 

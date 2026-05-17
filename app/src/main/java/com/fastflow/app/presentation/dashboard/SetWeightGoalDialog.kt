@@ -8,8 +8,10 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.fastflow.app.R
 
 @Composable
 fun SetWeightGoalDialog(
@@ -25,16 +27,16 @@ fun SetWeightGoalDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Objectif de poids") },
+        title = { Text(stringResource(R.string.weight_goal_dialog_title)) },
         text = {
             Column {
                 Text(
-                    text = "Définissez le poids que vous souhaitez atteindre.",
+                    text = stringResource(R.string.weight_goal_dialog_desc),
                     style = MaterialTheme.typography.bodyMedium
                 )
                 currentWeight?.let {
                     Text(
-                        text = "Poids actuel : ${String.format("%.1f", it)} kg",
+                        text = stringResource(R.string.weight_goal_current, it),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -43,7 +45,7 @@ fun SetWeightGoalDialog(
                 OutlinedTextField(
                     value = weightText,
                     onValueChange = { weightText = it },
-                    label = { Text("Objectif (kg)") },
+                    label = { Text(stringResource(R.string.weight_goal_input_label)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     singleLine = true
                 )
@@ -58,18 +60,18 @@ fun SetWeightGoalDialog(
                     currentWeight == null || w < currentWeight
                 } == true
             ) {
-                Text("Enregistrer")
+                Text(stringResource(R.string.save))
             }
         },
         dismissButton = {
             Row {
                 if (currentTarget != null) {
                     TextButton(onClick = onClear) {
-                        Text("Supprimer")
+                        Text(stringResource(R.string.delete))
                     }
                 }
                 TextButton(onClick = onDismiss) {
-                    Text("Annuler")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         }

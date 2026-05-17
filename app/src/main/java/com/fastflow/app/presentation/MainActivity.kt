@@ -23,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.fastflow.app.R
+import com.fastflow.app.core.locale.AppLocaleManager
 import com.fastflow.app.data.preferences.PreferencesManager
 import com.fastflow.app.presentation.coach.CoachScreen
 import com.fastflow.app.presentation.dashboard.DashboardScreen
@@ -43,6 +44,11 @@ class MainActivity : ComponentActivity() {
     lateinit var preferencesManager: PreferencesManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        runBlocking {
+            val language = preferencesManager.getAppLanguageOnce()
+                ?: AppLocaleManager.defaultLanguageTag()
+            AppLocaleManager.apply(language)
+        }
         super.onCreate(savedInstanceState)
         setContent {
             FastFlowTheme {

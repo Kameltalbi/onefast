@@ -7,9 +7,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.fastflow.app.R
 import com.fastflow.app.domain.model.FastingType
+import com.fastflow.app.presentation.localization.localizedName
+import com.fastflow.app.presentation.localization.localizedPlanSummary
 
 @Composable
 fun FastingTypeDialog(
@@ -32,7 +36,7 @@ fun FastingTypeDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Choisir un plan de jeûne") },
+        title = { Text(stringResource(R.string.dialog_choose_plan)) },
         text = {
             Column(
                 modifier = Modifier
@@ -56,12 +60,12 @@ fun FastingTypeDialog(
                             horizontalAlignment = Alignment.Start
                         ) {
                             Text(
-                                text = type.displayName,
+                                text = type.localizedName(),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = type.formatPlanSummary(),
+                                text = type.localizedPlanSummary(),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                             )
@@ -74,7 +78,7 @@ fun FastingTypeDialog(
         confirmButton = {},
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Annuler")
+                Text(stringResource(R.string.cancel))
             }
         }
     )
@@ -89,18 +93,18 @@ fun CustomPlanDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Plan personnalisé") },
+        title = { Text(stringResource(R.string.dialog_custom_plan)) },
         text = {
             Column {
                 Text(
-                    text = "Combien d'heures souhaitez-vous jeûner ?",
+                    text = stringResource(R.string.dialog_custom_plan_question),
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 OutlinedTextField(
                     value = fastingHours,
                     onValueChange = { fastingHours = it.filter { c -> c.isDigit() }.take(2) },
-                    label = { Text("Heures de jeûne (1-23)") },
+                    label = { Text(stringResource(R.string.dialog_fasting_hours_label)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -108,7 +112,10 @@ fun CustomPlanDialog(
                 if (hours != null) {
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Fenêtre repas : ${24 - hours.coerceIn(1, 23)}h",
+                        text = stringResource(
+                            R.string.dialog_eating_window_hours,
+                            24 - hours.coerceIn(1, 23)
+                        ),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -124,12 +131,12 @@ fun CustomPlanDialog(
                 },
                 enabled = fastingHours.toIntOrNull() in 1..23
             ) {
-                Text("Démarrer")
+                Text(stringResource(R.string.start_fast))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Annuler")
+                Text(stringResource(R.string.cancel))
             }
         }
     )
@@ -157,12 +164,12 @@ fun AutoStartSettingsCard(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Démarrage automatique",
+                        text = stringResource(R.string.dialog_auto_start_title),
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "Lance le jeûne à l'heure choisie",
+                        text = stringResource(R.string.dialog_auto_start_desc),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                     )
@@ -173,7 +180,10 @@ fun AutoStartSettingsCard(
             if (enabled) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
-                    text = "Heure : ${String.format("%02d:%02d", hour, minute)}",
+                    text = stringResource(
+                        R.string.dialog_time_label,
+                        String.format("%02d:%02d", hour, minute)
+                    ),
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(modifier = Modifier.height(8.dp))

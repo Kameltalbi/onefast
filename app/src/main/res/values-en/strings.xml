@@ -17,7 +17,48 @@
     <string name="plan_18_6">18:6 Advanced</string>
     <string name="plan_20_4">20:4 Warrior</string>
     <string name="plan_omad">OMAD (Premium)</string>
-    <string name="plan_custom">Custom (Premium)</string>
+    <string name="plan_custom">Custom</string>
+    <string name="plan_12_12">12:12 Beginner</string>
+    <string name="plan_14_10">14:10 Light</string>
+    <string name="plan_summary_format">%1$dh fast / %2$dh eating</string>
+    <string name="widget_status_fasting">Fasting</string>
+    <string name="widget_status_paused">Paused</string>
+    <string name="widget_status_inactive">Inactive</string>
+    <string name="widget_tap_to_start">Tap to start</string>
+
+    <string name="language_label">Language</string>
+    <string name="language_french">Français</string>
+    <string name="language_english">English</string>
+    <string name="profile_language_desc">French or English</string>
+
+    <string name="fasting_status_active">Fasting</string>
+    <string name="fasting_status_eating">Eating window</string>
+    <string name="fasting_elapsed">Elapsed: %1$s</string>
+    <string name="fasting_remaining">Remaining: %1$s</string>
+
+    <string name="motivation_paused">Take a break, then resume when you\'re ready.</string>
+    <string name="motivation_fat_burn">Your body is entering fat-burning mode. Keep going!</string>
+    <string name="motivation_almost_done">Only %1$d h left — you\'re almost there!</string>
+    <string name="motivation_hydrate">Stay hydrated. You\'re doing great.</string>
+    <string name="motivation_every_minute">Every minute counts. You\'re building a solid habit.</string>
+    <string name="motivation_streak_7">Amazing! %1$d days in a row. You\'re on fire.</string>
+    <string name="motivation_streak_3">%1$d-day streak — consistency wins.</string>
+    <string name="motivation_ready_start">Ready to start? One fast can change everything.</string>
+    <string name="motivation_weight_lost">You\'ve lost %.1f kg. Keep it up!</string>
+    <string name="motivation_consistency">Consistency beats perfection. Start your next fast.</string>
+
+    <string name="dialog_choose_plan">Choose a fasting plan</string>
+    <string name="dialog_custom_plan">Custom plan</string>
+    <string name="dialog_custom_plan_question">How many hours do you want to fast?</string>
+    <string name="dialog_fasting_hours_label">Fasting hours (1-23)</string>
+    <string name="dialog_eating_window_hours">Eating window: %1$dh</string>
+    <string name="dialog_auto_start_title">Auto-start</string>
+    <string name="dialog_auto_start_desc">Starts your fast at the chosen time</string>
+    <string name="dialog_time_label">Time: %1$s</string>
+    <string name="weight_goal_dialog_title">Weight goal</string>
+    <string name="weight_goal_dialog_desc">Set the weight you want to reach.</string>
+    <string name="weight_goal_current">Current weight: %.1f kg</string>
+    <string name="weight_goal_input_label">Goal (kg)</string>
     
     <string name="stats_title">Statistics</string>
     <string name="current_weight">Current Weight</string>
