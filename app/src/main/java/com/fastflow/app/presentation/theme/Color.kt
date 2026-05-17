@@ -1,0 +1,35 @@
+package com.fastflow.app.presentation.theme
+
+import androidx.compose.ui.graphics.Color
+
+val PrimaryBlueNight = Color(0xFF0B192C)
+val AccentBlue = Color(0xFF016AEB)
+val AccentOrange = Color(0xFFFFB200)
+val BackgroundLight = Color(0xFFF5F7F8)
+val TextAnthracite = Color(0xFF2C3E50)
+
+val md_theme_light_primary = Color(0xFF016AEB)
+val md_theme_light_onPrimary = Color(0xFFFFFFFF)
+val md_theme_light_primaryContainer = Color(0xFFD6E3FF)
+val md_theme_light_onPrimaryContainer = Color(0xFF001B3D)
+val md_theme_light_secondary = Color(0xFFFFB200)
+val md_theme_light_onSecondary = Color(0xFFFFFFFF)
+val md_theme_light_secondaryContainer = Color(0xFFFFE9C5)
+val md_theme_light_onSecondaryContainer = Color(0xFF2A1800)
+val md_theme_light_background = Color(0xFFF5F7F8)
+val md_theme_light_onBackground = Color(0xFF2C3E50)
+val md_theme_light_surface = Color(0xFFFFFFFF)
+val md_theme_light_onSurface = Color(0xFF2C3E50)
+
+val md_theme_dark_primary = Color(0xFFA8C7FF)
+val md_theme_dark_onPrimary = Color(0xFF003062)
+val md_theme_dark_primaryContainer = Color(0xFF0B192C)
+val md_theme_dark_onPrimaryContainer = Color(0xFFD6E3FF)
+val md_theme_dark_secondary = Color(0xFFFFD699)
+val md_theme_dark_onSecondary = Color(0xFF452B00)
+val md_theme_dark_secondaryContainer = Color(0xFF633F00)
+val md_theme_dark_onSecondaryContainer = Color(0xFFFFE9C5)
+val md_theme_dark_background = Color(0xFF1A1C1E)
+val md_theme_dark_onBackground = Color(0xFFE3E2E6)
+val md_theme_dark_surface = Color(0xFF1A1C1E)
+val md_theme_dark_onSurface = Color(0xFFE3E2E6)

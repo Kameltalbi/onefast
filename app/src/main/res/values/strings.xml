@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OneFast</string>
+    
+    <!-- Dashboard -->
+    <string name="dashboard_title">Tableau de Bord</string>
+    <string name="current_fast">Jeûne en cours</string>
+    <string name="eating_window">Fenêtre alimentaire</string>
+    <string name="time_elapsed">Temps écoulé</string>
+    <string name="time_remaining">Temps restant</string>
+    <string name="start_fast">Démarrer le jeûne</string>
+    <string name="pause_fast">Mettre en pause</string>
+    <string name="stop_fast">Arrêter</string>
+    <string name="resume_fast">Reprendre</string>
+    
+    <!-- Fasting Plans -->
+    <string name="fasting_plan">Plan de jeûne</string>
+    <string name="plan_16_8">16:8 Intermittent</string>
+    <string name="plan_18_6">18:6 Avancé</string>
+    <string name="plan_20_4">20:4 Warrior</string>
+    <string name="plan_omad">OMAD</string>
+    <string name="plan_custom">Personnalisé</string>
+    <string name="widget_description">Timer de jeûne OneFast</string>
+    
+    <!-- Stats -->
+    <string name="stats_title">Statistiques</string>
+    <string name="current_weight">Poids actuel</string>
+    <string name="total_fasts">Jeûnes terminés</string>
+    <string name="current_streak">Série actuelle</string>
+    <string name="average_fast">Temps moyen</string>
+    <string name="weight_history">Historique du poids</string>
+    <string name="add_weight">Ajouter poids</string>
+    
+    <!-- Notifications -->
+    <string name="notif_channel_name">Notifications OneFast</string>
+    <string name="notif_channel_desc">Notifications pour le suivi du jeûne</string>
+    <string name="notif_fast_started">Jeûne démarré</string>
+    <string name="notif_fast_ended">Jeûne terminé ! Félicitations !</string>
+    <string name="notif_eating_window_open">Fenêtre alimentaire ouverte</string>
+    <string name="notif_eating_window_close">Fenêtre alimentaire bientôt fermée</string>
+    <string name="notif_hydration">N\'oubliez pas de vous hydrater</string>
+    <string name="notif_fast_started_body">Votre jeûne a commencé. Bon courage !</string>
+    <string name="notif_fast_ended_body">Vous pouvez maintenant manger. Félicitations !</string>
+    <string name="notif_two_hours_title">Presque terminé</string>
+    <string name="notif_two_hours_body">Il vous reste environ 2 heures de jeûne.</string>
+    <string name="notif_fat_burn_title">Phase métabolique</string>
+    <string name="notif_fat_burn_body">Votre corps entre en phase de combustion des graisses.</string>
+    <string name="notif_hydration_body">Pensez à boire de l\'eau pendant votre jeûne.</string>
+    <string name="notif_streak_title">Bravo !</string>
+    <string name="notif_streak_body">%1$d jours consécutifs de jeûne. Continuez ainsi !</string>
+    <string name="notif_eating_window_body">Votre fenêtre alimentaire est ouverte.</string>
+    <string name="notif_settings_desc">Choisissez les rappels que vous souhaitez recevoir.</string>
+    <string name="notif_toggle_all">Activer les notifications</string>
+    <string name="notif_toggle_hydration">Rappels hydratation</string>
+    <string name="notif_toggle_two_hours">Alerte 2 heures restantes</string>
+    <string name="notif_toggle_fat_burn">Phase combustion des graisses</string>
+    <string name="notif_toggle_streak">Jalons de série (3, 7, 14, 30 jours)</string>
+    <string name="notif_toggle_quiet_hours">Heures silencieuses</string>
+    <string name="notif_quiet_hours_label">Plage silencieuse</string>
+    <string name="notif_quiet_hours_current">Actuel : %1$02dh → %2$02dh</string>
+
+    <!-- Coach IA -->
+    <string name="coach_title">Coach IA</string>
+    <string name="coach_welcome">Posez vos questions sur le jeûne, la faim, l\'hydratation ou vos repas.</string>
+    <string name="coach_disclaimer">Conseils généraux, pas un avis médical. Consultez un professionnel en cas de doute.</string>
+    <string name="coach_quota">%1$d / %2$d questions gratuites aujourd\'hui</string>
+    <string name="coach_input_hint">Votre question…</string>
+    <string name="coach_send">Envoyer</string>
+    <string name="coach_clear">Effacer</string>
+    <string name="coach_suggestions_label">Suggestions</string>
+    <string name="coach_suggestion_hungry">J\'ai faim</string>
+    <string name="coach_suggestion_break_fast">Que manger après mon jeûne ?</string>
+    <string name="coach_suggestion_coffee">Puis-je boire un café ?</string>
+    <string name="coach_suggestion_tired">Je suis fatigué</string>
+    <string name="nav_coach">Coach</string>
+    <string name="nav_home">Accueil</string>
+    <string name="nav_progress">Progrès</string>
+    <string name="nav_profile">Profil</string>
+    <string name="dashboard_ready">Prêt à jeûner ?</string>
+    <string name="dashboard_plan_label">Plan : %1$s</string>
+    <string name="days_unit">jours</string>
+    <string name="weight_goal">Objectif</string>
+    <string name="progress_chart_hint">Ajoutez au moins 2 pesées pour voir le graphique</string>
+    <string name="profile_section_app">Application</string>
+    <string name="profile_notifications_desc">Début, fin et motivation</string>
+    <string name="profile_section_plan">Jeûne</string>
+    <string name="profile_default_plan">Plan par défaut</string>
+    <string name="profile_v1_note">D\'autres fonctions arriveront progressivement.</string>
+    <string name="notif_v1_desc">Notifications essentielles pour votre jeûne.</string>
+    <string name="notif_v1_start_end_hint">Début et fin de jeûne inclus lorsque les notifications sont activées.</string>
+    <string name="notif_v1_motivation_desc">Séries de 3, 7, 14 et 30 jours</string>
+    <string name="error_title">Erreur</string>
+    <string name="ok">OK</string>
+
+    <!-- Prédictions IA -->
+    <string name="prediction_title">Prédictions</string>
+    <string name="prediction_set_goal">Objectif</string>
+    <string name="prediction_edit_goal">Modifier</string>
+    <string name="prediction_in_4_weeks">Dans 4 semaines</string>
+    <string name="prediction_weekly_rate">Rythme / semaine</string>
+    <string name="prediction_recommended_plan">Plan recommandé</string>
+    <string name="prediction_goal_date">Date estimée : %1$s</string>
+
+    <!-- Alertes santé -->
+    <string name="health_alert_dismiss">Masquer</string>
+
+    <!-- Défis -->
+    <string name="challenges_title">Mes défis</string>
+    <string name="nav_challenges">Défis</string>
+    <string name="challenges_badges_title">Badges gagnés</string>
+    <string name="challenges_available_title">Défis disponibles</string>
+    <string name="challenges_join">Relever le défi</string>
+    <string name="challenges_abandon">Abandonner</string>
+    <string name="challenges_progress">%1$d / %2$d jours validés</string>
+    <string name="challenges_rule">%1$d jours · jeûne ≥ %2$d h / jour</string>
+    <string name="challenges_leaderboard_hint">Classement en ligne : bientôt disponible.</string>
+    <string name="challenge_7_days_title">Défi 7 jours</string>
+    <string name="challenge_7_days_desc">7 jours de jeûne 16h+ pour ancrer l\'habitude.</string>
+    <string name="challenge_30_days_title">Défi 30 jours</string>
+    <string name="challenge_30_days_desc">Un mois complet pour transformer votre routine.</string>
+    <string name="challenge_ramadan_title">Challenge Ramadan</string>
+    <string name="challenge_ramadan_desc">30 jours de discipline, jeûne ≥ 14h par jour.</string>
+    <string name="challenge_summer_title">Summer Body</string>
+    <string name="challenge_summer_desc">30 jours intensifs, jeûne ≥ 18h par jour.</string>
+    <string name="challenge_notif_half_title">Défi : à mi-parcours !</string>
+    <string name="challenge_notif_half_body">%1$s — vous êtes à %2$d %% du défi. Continuez !</string>
+    <string name="challenge_notif_win_title">Défi réussi !</string>
+    <string name="challenge_notif_win_body">Bravo ! Vous avez terminé « %1$s ». Badge débloqué.</string>
+
+    <!-- Communauté -->
+    <string name="community_title">Communauté</string>
+    <string name="nav_community">Communauté</string>
+    <string name="community_profile">Profil</string>
+    <string name="community_share_progress">Partager mes progrès</string>
+    <string name="community_compose">Publier</string>
+    <string name="community_sync_hint">Fil local · synchronisation cloud bientôt disponible.</string>
+    <string name="community_filter_all">Tout</string>
+    <string name="community_filter_motivation">Motivation</string>
+    <string name="community_filter_meals">Repas</string>
+    <string name="community_filter_progress">Progrès</string>
+    <string name="community_group_all">Tous groupes</string>
+    <string name="community_group_general">Général</string>
+    <string name="community_group_ramadan">Ramadan</string>
+    <string name="community_group_summer">Été</string>
+    <string name="community_empty">Aucune publication pour ce filtre.</string>
+    <string name="community_profile_prompt">Rejoignez la communauté avec un pseudo (ou en mode anonyme).</string>
+    <string name="community_setup_profile">Configurer mon profil</string>
+    <string name="community_hide">Masquer</string>
+    <string name="community_report">Signaler</string>
+    <string name="community_profile_title">Profil communauté</string>
+    <string name="community_display_name">Pseudo</string>
+    <string name="community_anonymous">Publier de façon anonyme</string>
+    <string name="community_compose_title">Nouvelle publication</string>
+    <string name="community_compose_hint">Votre message, idée de repas ou motivation…</string>
+    <string name="community_publish">Publier</string>
+    <string name="community_type_motivation">Motivation</string>
+    <string name="community_type_meal">Repas</string>
+    <string name="community_type_progress">Progrès</string>
+
+    <!-- Générateur repas IA -->
+    <string name="meal_plan_title">Plan repas IA</string>
+    <string name="meal_plan_card_title">Générateur de repas</string>
+    <string name="meal_plan_card_desc">Plan personnalisé selon vos objectifs · Premium</string>
+    <string name="meal_tab_generate">Générer</string>
+    <string name="meal_tab_result">Résultat</string>
+    <string name="meal_tab_favorites">Favoris</string>
+    <string name="meal_premium_hint">Premium : plans IA illimités. Gratuit : plan local intelligent.</string>
+    <string name="meal_calories">Calories / jour</string>
+    <string name="meal_cuisine">Cuisine / pays</string>
+    <string name="meal_goal_label">Objectif</string>
+    <string name="meal_goal_loss">Perte</string>
+    <string name="meal_goal_maintain">Maintien</string>
+    <string name="meal_goal_muscle">Muscle</string>
+    <string name="meal_diet_label">Régime</string>
+    <string name="meal_diet_standard">Standard</string>
+    <string name="meal_diet_halal">Halal</string>
+    <string name="meal_diet_vegetarian">Végétarien</string>
+    <string name="meal_diet_vegan">Vegan</string>
+    <string name="meal_diet_keto">Keto</string>
+    <string name="meal_budget_label">Budget</string>
+    <string name="meal_budget_low">Économique</string>
+    <string name="meal_budget_medium">Moyen</string>
+    <string name="meal_budget_high">Confort</string>
+    <string name="meal_days_label">Durée : %1$d jour(s)</string>
+    <string name="meal_generate">Générer le plan</string>
+    <string name="meal_generate_ai">Générer avec l\'IA</string>
+    <string name="meal_generate_local">Plan local (gratuit)</string>
+    <string name="meal_no_plan">Générez un plan pour voir le résultat.</string>
+    <string name="meal_shopping_list">Liste de courses</string>
+    <string name="meal_export_shopping">Exporter la liste</string>
+    <string name="meal_shopping_share_subject">Liste de courses OneFast</string>
+    <string name="meal_history">Historique</string>
+    <string name="meal_history_empty">Aucun plan enregistré.</string>
+
+    <!-- Health Connect -->
+    <string name="health_sync_title">Santé connectée</string>
+    <string name="health_sync_desc">Synchronisez pas, sommeil, calories et fréquence cardiaque via Google Health Connect.</string>
+    <string name="health_sync_connect">Connecter Health Connect</string>
+    <string name="health_sync_now">Synchroniser</string>
+    <string name="health_sync_not_installed">Installez l\'application Health Connect pour continuer.</string>
+    <string name="health_sync_update_required">Mettez à jour Health Connect depuis le Play Store.</string>
+    <string name="health_sync_not_supported">Health Connect n\'est pas disponible sur cet appareil.</string>
+    <string name="health_sync_install">Ouvrir le Play Store</string>
+    <string name="health_sync_write_weight">Exporter le poids vers Health Connect</string>
+    <string name="health_sync_metrics">Données synchronisées</string>
+    <string name="health_sync_steps">Pas</string>
+    <string name="health_sync_steps_avg">Moy. 7j : %1$d</string>
+    <string name="health_sync_calories">Calories actives</string>
+    <string name="health_sync_sleep">Sommeil</string>
+    <string name="health_sync_last_night">dernière nuit</string>
+    <string name="health_sync_heart">Fréquence</string>
+    <string name="health_sync_weight">Poids (HC)</string>
+    <string name="health_sync_from_hc">depuis Health Connect</string>
+    <string name="health_sync_card_title">Santé connectée</string>
+    <string name="health_sync_card_connect">Connecter pour voir pas, sommeil et plus</string>
+    <string name="health_sync_card_summary">%1$d pas aujourd\'hui · Sommeil %2$s</string>
+
+    <!-- Mode Ramadan -->
+    <string name="ramadan_title">Mode Ramadan</string>
+    <string name="ramadan_card_title">Mode Ramadan</string>
+    <string name="ramadan_card_desc">Iftar, suhoor et hydratation selon votre ville</string>
+    <string name="ramadan_card_enabled">Mode actif · Voir les horaires</string>
+    <string name="ramadan_mode_label">Activer le mode Ramadan</string>
+    <string name="ramadan_mode_desc">Horaires automatiques et rappels adaptés</string>
+    <string name="ramadan_city">Ville</string>
+    <string name="ramadan_country">Pays</string>
+    <string name="ramadan_refresh_times">Mettre à jour les horaires</string>
+    <string name="ramadan_hydration_reminders">Rappels hydratation (entre iftar et suhoor)</string>
+    <string name="ramadan_hijri_date">Date hijri : %1$s</string>
+    <string name="ramadan_iftar">Iftar (Maghrib)</string>
+    <string name="ramadan_suhoor">Suhoor (Fajr)</string>
+    <string name="ramadan_until_iftar">Temps avant l\'iftar</string>
+    <string name="ramadan_until_suhoor">Temps avant le suhoor</string>
+    <string name="ramadan_status_fasting">Jeûne en cours</string>
+    <string name="ramadan_status_eating">Fenêtre alimentaire</string>
+    <string name="ramadan_start_fast">Démarrer le jeûne du jour</string>
+    <string name="ramadan_tips_title">Conseils nutrition</string>
+    <string name="ramadan_open_challenge">Voir le défi Ramadan</string>
+    <string name="ramadan_notif_iftar_title">Iftar</string>
+    <string name="ramadan_notif_iftar_body">C\'est l\'heure de rompre le jeûne. Commencez par de l\'eau et des dattes.</string>
+    <string name="ramadan_notif_suhoor_title">Suhoor</string>
+    <string name="ramadan_notif_suhoor_body">Le suhoor se termine bientôt. Arrêtez de manger et préparez-vous pour le jeûne.</string>
+    <string name="ramadan_notif_hydration_title">Hydratation Ramadan</string>
+    <string name="ramadan_notif_hydration_body">Pensez à boire de l\'eau régulièrement avant le prochain jeûne.</string>
+    <string-array name="ramadan_tips">
+        <item>Rompez le jeûne avec de l\'eau et 2–3 dattes, puis une soupe légère.</item>
+        <item>Au suhoor : privilégiez protéines lentes (œufs, avoine) et fibres.</item>
+        <item>Évitez les fritures et le sucre en excès à l\'iftar.</item>
+        <item>Répartissez l\'hydratation entre l\'iftar et le suhoor.</item>
+        <item>Marche légère après l\'iftar aide la digestion.</item>
+    </string-array>
+    
+    <!-- Premium -->
+    <string name="premium_title">OneFast Premium</string>
+    <string name="premium_subtitle">Débloquez toutes les fonctionnalités</string>
+    <string name="premium_feature_1">Plans de jeûne avancés</string>
+    <string name="premium_feature_2">Statistiques détaillées</string>
+    <string name="premium_feature_3">Coaching IA personnalisé</string>
+    <string name="premium_feature_4">Recettes adaptées</string>
+    <string name="subscribe_monthly">Mensuel - 9,99 $</string>
+    <string name="subscribe_yearly">Annuel - 59,99 $</string>
+    <string name="restore_purchase">Restaurer les achats</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Paramètres</string>
+    <string name="notifications_settings">Notifications</string>
+    <string name="language_settings">Langue</string>
+    <string name="units_settings">Unités</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="terms_of_service">Conditions d\'utilisation</string>
+    
+    <!-- Common -->
+    <string name="save">Enregistrer</string>
+    <string name="cancel">Annuler</string>
+    <string name="delete">Supprimer</string>
+    <string name="edit">Modifier</string>
+    <string name="hours">heures</string>
+    <string name="minutes">minutes</string>
+    <string name="kg">kg</string>
+    <string name="lbs">lbs</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slogan">Transformez votre santé avec un jeûne plus intelligent.</string>
+    <string name="onboarding_start">Commencer</string>
+    <string name="onboarding_continue">Continuer</string>
+    <string name="onboarding_continue_google">Continuer avec Google</string>
+    <string name="onboarding_continue_apple">Continuer avec Apple</string>
+    <string name="onboarding_auth_soon">Connexion bientôt disponible — utilisez Commencer pour l\'instant.</string>
+    <string name="onboarding_step_label">Étape %1$d sur %2$d</string>
+    <string name="onboarding_goal_title">Quel est votre objectif principal ?</string>
+    <string name="onboarding_goal_lose_weight">Perdre du poids</string>
+    <string name="onboarding_goal_energy">Plus d\'énergie</string>
+    <string name="onboarding_goal_lifestyle">Mode de vie sain</string>
+    <string name="onboarding_goal_ramadan">Jeûne du Ramadan</string>
+    <string name="onboarding_profile_title">Votre profil</string>
+    <string name="onboarding_profile_subtitle">Quelques infos pour personnaliser votre parcours.</string>
+    <string name="onboarding_age">Âge</string>
+    <string name="onboarding_height">Taille</string>
+    <string name="onboarding_height_value">%1$d cm</string>
+    <string name="onboarding_weight">Poids actuel</string>
+    <string name="onboarding_weight_value">%1$.1f kg</string>
+    <string name="onboarding_target_weight">Poids cible</string>
+    <string name="onboarding_experience_title">Avez-vous déjà pratiqué le jeûne intermittent ?</string>
+    <string name="onboarding_level_beginner">Débutant</string>
+    <string name="onboarding_level_intermediate">Intermédiaire</string>
+    <string name="onboarding_level_advanced">Avancé</string>
+    <string name="onboarding_recommendation_title">Nous vous recommandons :</string>
+    <string name="onboarding_fasting_hours">Heures de jeûne</string>
+    <string name="onboarding_eating_hours">Heures de repas</string>
+    <string name="onboarding_hours_format">%1$d h</string>
+    <string name="onboarding_difficulty">Difficulté</string>
+    <string name="onboarding_difficulty_easy">Facile</string>
+    <string name="onboarding_difficulty_moderate">Modérée</string>
+    <string name="onboarding_difficulty_challenging">Exigeant</string>
+    <string name="onboarding_start_journey">Démarrer mon parcours</string>
+</resources>

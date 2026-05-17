@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OneFast</string>
+    
+    <!-- Dashboard -->
+    <string name="dashboard_title">Panel de Control</string>
+    <string name="current_fast">Ayuno Actual</string>
+    <string name="eating_window">Ventana de Alimentación</string>
+    <string name="time_elapsed">Tiempo Transcurrido</string>
+    <string name="time_remaining">Tiempo Restante</string>
+    <string name="start_fast">Iniciar Ayuno</string>
+    <string name="pause_fast">Pausar</string>
+    <string name="stop_fast">Detener</string>
+    <string name="resume_fast">Reanudar</string>
+    
+    <!-- Fasting Plans -->
+    <string name="fasting_plan">Plan de Ayuno</string>
+    <string name="plan_16_8">16:8 Intermitente</string>
+    <string name="plan_18_6">18:6 Avanzado</string>
+    <string name="plan_20_4">20:4 Guerrero</string>
+    <string name="plan_omad">OMAD (Premium)</string>
+    <string name="plan_custom">Personalizado (Premium)</string>
+    
+    <!-- Stats -->
+    <string name="stats_title">Estadísticas</string>
+    <string name="current_weight">Peso Actual</string>
+    <string name="total_fasts">Ayunos Completados</string>
+    <string name="current_streak">Racha Actual</string>
+    <string name="average_fast">Tiempo Promedio</string>
+    <string name="weight_history">Historial de Peso</string>
+    <string name="add_weight">Añadir Peso</string>
+    
+    <!-- Notifications -->
+    <string name="notif_channel_name">Notificaciones OneFast</string>
+    <string name="notif_channel_desc">Notificaciones para el seguimiento del ayuno</string>
+    <string name="notif_fast_started">Ayuno Iniciado</string>
+    <string name="notif_fast_ended">¡Ayuno Completado! ¡Felicitaciones!</string>
+    <string name="notif_eating_window_open">Ventana de Alimentación Abierta</string>
+    <string name="notif_eating_window_close">Ventana de Alimentación Cerrando Pronto</string>
+    <string name="notif_hydration">No olvides hidratarte</string>
+    
+    <!-- Premium -->
+    <string name="premium_title">OneFast Premium</string>
+    <string name="premium_subtitle">Desbloquea todas las funciones</string>
+    <string name="premium_feature_1">Planes de ayuno avanzados</string>
+    <string name="premium_feature_2">Estadísticas detalladas</string>
+    <string name="premium_feature_3">Coaching IA personalizado</string>
+    <string name="premium_feature_4">Recetas adaptadas</string>
+    <string name="subscribe_monthly">Mensual - $9.99</string>
+    <string name="subscribe_yearly">Anual - $59.99</string>
+    <string name="restore_purchase">Restaurar Compras</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Configuración</string>
+    <string name="notifications_settings">Notificaciones</string>
+    <string name="language_settings">Idioma</string>
+    <string name="units_settings">Unidades</string>
+    <string name="privacy_policy">Política de Privacidad</string>
+    <string name="terms_of_service">Términos de Servicio</string>
+    
+    <!-- Common -->
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Eliminar</string>
+    <string name="edit">Editar</string>
+    <string name="hours">horas</string>
+    <string name="minutes">minutos</string>
+    <string name="kg">kg</string>
+    <string name="lbs">lbs</string>
+</resources>

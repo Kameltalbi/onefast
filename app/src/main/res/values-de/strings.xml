@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OneFast</string>
+    
+    <!-- Dashboard -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="current_fast">Aktuelles Fasten</string>
+    <string name="eating_window">Essensfenster</string>
+    <string name="time_elapsed">Verstrichene Zeit</string>
+    <string name="time_remaining">Verbleibende Zeit</string>
+    <string name="start_fast">Fasten Starten</string>
+    <string name="pause_fast">Pausieren</string>
+    <string name="stop_fast">Stoppen</string>
+    <string name="resume_fast">Fortsetzen</string>
+    
+    <!-- Fasting Plans -->
+    <string name="fasting_plan">Fastenplan</string>
+    <string name="plan_16_8">16:8 Intervallfasten</string>
+    <string name="plan_18_6">18:6 Fortgeschritten</string>
+    <string name="plan_20_4">20:4 Krieger</string>
+    <string name="plan_omad">OMAD (Premium)</string>
+    <string name="plan_custom">Benutzerdefiniert (Premium)</string>
+    
+    <!-- Stats -->
+    <string name="stats_title">Statistiken</string>
+    <string name="current_weight">Aktuelles Gewicht</string>
+    <string name="total_fasts">Abgeschlossene Fasten</string>
+    <string name="current_streak">Aktuelle Serie</string>
+    <string name="average_fast">Durchschnittszeit</string>
+    <string name="weight_history">Gewichtsverlauf</string>
+    <string name="add_weight">Gewicht Hinzufügen</string>
+    
+    <!-- Notifications -->
+    <string name="notif_channel_name">OneFast Benachrichtigungen</string>
+    <string name="notif_channel_desc">Benachrichtigungen für Fastenverfolgung</string>
+    <string name="notif_fast_started">Fasten Gestartet</string>
+    <string name="notif_fast_ended">Fasten Abgeschlossen! Glückwunsch!</string>
+    <string name="notif_eating_window_open">Essensfenster Geöffnet</string>
+    <string name="notif_eating_window_close">Essensfenster Schließt Bald</string>
+    <string name="notif_hydration">Vergessen Sie nicht zu trinken</string>
+    
+    <!-- Premium -->
+    <string name="premium_title">OneFast Premium</string>
+    <string name="premium_subtitle">Alle Funktionen freischalten</string>
+    <string name="premium_feature_1">Erweiterte Fastenpläne</string>
+    <string name="premium_feature_2">Detaillierte Statistiken</string>
+    <string name="premium_feature_3">Personalisiertes KI-Coaching</string>
+    <string name="premium_feature_4">Angepasste Rezepte</string>
+    <string name="subscribe_monthly">Monatlich - $9.99</string>
+    <string name="subscribe_yearly">Jährlich - $59.99</string>
+    <string name="restore_purchase">Käufe Wiederherstellen</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="notifications_settings">Benachrichtigungen</string>
+    <string name="language_settings">Sprache</string>
+    <string name="units_settings">Einheiten</string>
+    <string name="privacy_policy">Datenschutzrichtlinie</string>
+    <string name="terms_of_service">Nutzungsbedingungen</string>
+    
+    <!-- Common -->
+    <string name="save">Speichern</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="delete">Löschen</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="hours">Stunden</string>
+    <string name="minutes">Minuten</string>
+    <string name="kg">kg</string>
+    <string name="lbs">lbs</string>
+</resources>

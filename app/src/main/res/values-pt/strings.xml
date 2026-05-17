@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OneFast</string>
+    
+    <!-- Dashboard -->
+    <string name="dashboard_title">Painel de Controle</string>
+    <string name="current_fast">Jejum Atual</string>
+    <string name="eating_window">Janela de Alimentação</string>
+    <string name="time_elapsed">Tempo Decorrido</string>
+    <string name="time_remaining">Tempo Restante</string>
+    <string name="start_fast">Iniciar Jejum</string>
+    <string name="pause_fast">Pausar</string>
+    <string name="stop_fast">Parar</string>
+    <string name="resume_fast">Retomar</string>
+    
+    <!-- Fasting Plans -->
+    <string name="fasting_plan">Plano de Jejum</string>
+    <string name="plan_16_8">16:8 Intermitente</string>
+    <string name="plan_18_6">18:6 Avançado</string>
+    <string name="plan_20_4">20:4 Guerreiro</string>
+    <string name="plan_omad">OMAD (Premium)</string>
+    <string name="plan_custom">Personalizado (Premium)</string>
+    
+    <!-- Stats -->
+    <string name="stats_title">Estatísticas</string>
+    <string name="current_weight">Peso Atual</string>
+    <string name="total_fasts">Jejuns Completados</string>
+    <string name="current_streak">Sequência Atual</string>
+    <string name="average_fast">Tempo Médio</string>
+    <string name="weight_history">Histórico de Peso</string>
+    <string name="add_weight">Adicionar Peso</string>
+    
+    <!-- Notifications -->
+    <string name="notif_channel_name">Notificações OneFast</string>
+    <string name="notif_channel_desc">Notificações para acompanhamento do jejum</string>
+    <string name="notif_fast_started">Jejum Iniciado</string>
+    <string name="notif_fast_ended">Jejum Completado! Parabéns!</string>
+    <string name="notif_eating_window_open">Janela de Alimentação Aberta</string>
+    <string name="notif_eating_window_close">Janela de Alimentação Fechando em Breve</string>
+    <string name="notif_hydration">Não se esqueça de se hidratar</string>
+    
+    <!-- Premium -->
+    <string name="premium_title">OneFast Premium</string>
+    <string name="premium_subtitle">Desbloqueie todos os recursos</string>
+    <string name="premium_feature_1">Planos de jejum avançados</string>
+    <string name="premium_feature_2">Estatísticas detalhadas</string>
+    <string name="premium_feature_3">Coaching IA personalizado</string>
+    <string name="premium_feature_4">Receitas adaptadas</string>
+    <string name="subscribe_monthly">Mensal - $9.99</string>
+    <string name="subscribe_yearly">Anual - $59.99</string>
+    <string name="restore_purchase">Restaurar Compras</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Configurações</string>
+    <string name="notifications_settings">Notificações</string>
+    <string name="language_settings">Idioma</string>
+    <string name="units_settings">Unidades</string>
+    <string name="privacy_policy">Política de Privacidade</string>
+    <string name="terms_of_service">Termos de Serviço</string>
+    
+    <!-- Common -->
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="delete">Excluir</string>
+    <string name="edit">Editar</string>
+    <string name="hours">horas</string>
+    <string name="minutes">minutos</string>
+    <string name="kg">kg</string>
+    <string name="lbs">lbs</string>
+</resources>

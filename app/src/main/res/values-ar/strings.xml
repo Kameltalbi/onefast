@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ramadan_title">وضع رمضان</string>
+    <string name="ramadan_card_title">وضع رمضان</string>
+    <string name="ramadan_card_desc">الإفطار والسحور والترطيب حسب مدينتك</string>
+    <string name="ramadan_mode_label">تفعيل وضع رمضان</string>
+    <string name="ramadan_mode_desc">مواقيت تلقائية وتذكيرات مناسبة</string>
+    <string name="ramadan_iftar">الإفطار (المغرب)</string>
+    <string name="ramadan_suhoor">السحور (الفجر)</string>
+    <string name="ramadan_until_iftar">الوقت المتبقي للإفطار</string>
+    <string name="ramadan_until_suhoor">الوقت المتبقي للسحور</string>
+    <string name="ramadan_status_fasting">صيام جاري</string>
+    <string name="ramadan_status_eating">نافذة الأكل</string>
+    <string name="ramadan_notif_iftar_title">الإفطار</string>
+    <string name="ramadan_notif_iftar_body">حان وقت الإفطار. ابدأ بالماء والتمر.</string>
+    <string name="ramadan_notif_suhoor_title">السحور</string>
+    <string name="ramadan_notif_suhoor_body">ينتهي السحور قريباً. استعد للصيام.</string>
+    <string name="ramadan_notif_hydration_title">ترطيب رمضان</string>
+    <string name="ramadan_notif_hydration_body">اشرب الماء بانتظام قبل الصيام التالي.</string>
+</resources>
