@@ -14,6 +14,10 @@ object AppLocaleManager {
     const val LANGUAGE_ARABIC = "ar"
     const val LANGUAGE_TURKISH = "tr"
 
+    @Volatile
+    var currentLanguageTag: String = LANGUAGE_ENGLISH
+        private set
+
     fun supportedTags(): List<String> = AppLanguages.all.map { it.tag }
 
     fun defaultLanguageTag(): String {
@@ -23,6 +27,7 @@ object AppLocaleManager {
 
     fun apply(languageTag: String) {
         val tag = languageTag.takeIf { it in supportedTags() } ?: defaultLanguageTag()
+        currentLanguageTag = tag
         AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
     }
 }

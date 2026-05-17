@@ -2,44 +2,317 @@
 <resources>
     <string name="app_name">OneFast</string>
     
-    <!-- Dashboard -->
-    <string name="dashboard_title">Panel de Control</string>
-    <string name="current_fast">Ayuno Actual</string>
-    <string name="eating_window">Ventana de Alimentación</string>
-    <string name="time_elapsed">Tiempo Transcurrido</string>
-    <string name="time_remaining">Tiempo Restante</string>
-    <string name="start_fast">Iniciar Ayuno</string>
+    <string name="dashboard_title">Panel</string>
+    <string name="current_fast">Ayuno actual</string>
+    <string name="eating_window">Ventana de alimentación</string>
+    <string name="time_elapsed">Tiempo transcurrido</string>
+    <string name="time_remaining">Tiempo restante</string>
+    <string name="start_fast">Iniciar ayuno</string>
     <string name="pause_fast">Pausar</string>
     <string name="stop_fast">Detener</string>
     <string name="resume_fast">Reanudar</string>
     
-    <!-- Fasting Plans -->
-    <string name="fasting_plan">Plan de Ayuno</string>
-    <string name="plan_16_8">16:8 Intermitente</string>
-    <string name="plan_18_6">18:6 Avanzado</string>
-    <string name="plan_20_4">20:4 Guerrero</string>
+    <string name="fasting_plan">Plan de ayuno</string>
+    <string name="plan_16_8">16:8 intermitente</string>
+    <string name="plan_18_6">18:6 avanzado</string>
+    <string name="plan_20_4">20:4 guerrero</string>
     <string name="plan_omad">OMAD (Premium)</string>
-    <string name="plan_custom">Personalizado (Premium)</string>
+    <string name="plan_custom">Personalizado</string>
+    <string name="plan_12_12">12:12 principiante</string>
+    <string name="plan_14_10">14:10 ligero</string>
+    <string name="plan_summary_format">%1$dh de ayuno / %2$dh de alimentación</string>
+    <string name="widget_status_fasting">Ayunando</string>
+    <string name="widget_status_paused">En pausa</string>
+    <string name="widget_status_inactive">Inactivo</string>
+    <string name="widget_tap_to_start">Toca para iniciar</string>
+
+    <string name="language_label">Idioma</string>
+    <string name="language_french">Français</string>
+    <string name="language_english">English</string>
+    <string name="profile_language_desc">Francés, inglés, español, alemán, portugués, árabe, turco</string>
+
+    <string name="fasting_status_active">Ayunando</string>
+    <string name="fasting_status_eating">Ventana de alimentación</string>
+    <string name="fasting_elapsed">Transcurrido: %1$s</string>
+    <string name="fasting_remaining">Restante: %1$s</string>
+
+    <string name="motivation_paused">Tómate un descanso y reanuda cuando estés listo.</string>
+    <string name="motivation_fat_burn">Tu cuerpo está entrando en modo quema de grasa. ¡Sigue así!</string>
+    <string name="motivation_almost_done">Solo quedan %1$d h — ¡casi lo logras!</string>
+    <string name="motivation_hydrate">Mantente hidratado. Lo estás haciendo muy bien.</string>
+    <string name="motivation_every_minute">Cada minuto cuenta. Estás creando un hábito sólido.</string>
+    <string name="motivation_streak_7">¡Increíble! %1$d días seguidos. Vas genial.</string>
+    <string name="motivation_streak_3">Racha de %1$d días — la constancia gana.</string>
+    <string name="motivation_ready_start">¿Listo para empezar? Un ayuno puede cambiarlo todo.</string>
+    <string name="motivation_weight_lost">Has perdido %.1f kg. ¡Sigue así!</string>
+    <string name="motivation_consistency">La constancia vence a la perfección. Inicia tu próximo ayuno.</string>
+
+    <string name="dialog_choose_plan">Elige un plan de ayuno</string>
+    <string name="dialog_custom_plan">Plan personalizado</string>
+    <string name="dialog_custom_plan_question">¿Cuántas horas quieres ayunar?</string>
+    <string name="dialog_fasting_hours_label">Horas de ayuno (1-23)</string>
+    <string name="dialog_eating_window_hours">Ventana de alimentación: %1$dh</string>
+    <string name="dialog_auto_start_title">Inicio automático</string>
+    <string name="dialog_auto_start_desc">Inicia tu ayuno a la hora elegida</string>
+    <string name="dialog_time_label">Hora: %1$s</string>
+    <string name="weight_goal_dialog_title">Objetivo de peso</string>
+    <string name="weight_goal_dialog_desc">Indica el peso que quieres alcanzar.</string>
+    <string name="weight_goal_current">Peso actual: %.1f kg</string>
+    <string name="weight_goal_input_label">Objetivo (kg)</string>
     
-    <!-- Stats -->
     <string name="stats_title">Estadísticas</string>
-    <string name="current_weight">Peso Actual</string>
-    <string name="total_fasts">Ayunos Completados</string>
-    <string name="current_streak">Racha Actual</string>
-    <string name="average_fast">Tiempo Promedio</string>
-    <string name="weight_history">Historial de Peso</string>
-    <string name="add_weight">Añadir Peso</string>
+    <string name="current_weight">Peso actual</string>
+    <string name="total_fasts">Ayunos completados</string>
+    <string name="current_streak">Racha actual</string>
+    <string name="average_fast">Tiempo promedio</string>
+    <string name="weight_history">Historial de peso</string>
+    <string name="add_weight">Añadir peso</string>
     
-    <!-- Notifications -->
-    <string name="notif_channel_name">Notificaciones OneFast</string>
+    <string name="notif_channel_name">Notificaciones de OneFast</string>
     <string name="notif_channel_desc">Notificaciones para el seguimiento del ayuno</string>
-    <string name="notif_fast_started">Ayuno Iniciado</string>
-    <string name="notif_fast_ended">¡Ayuno Completado! ¡Felicitaciones!</string>
-    <string name="notif_eating_window_open">Ventana de Alimentación Abierta</string>
-    <string name="notif_eating_window_close">Ventana de Alimentación Cerrando Pronto</string>
+    <string name="notif_fast_started">Ayuno iniciado</string>
+    <string name="notif_fast_ended">¡Ayuno completado! ¡Enhorabuena!</string>
+    <string name="notif_eating_window_open">Ventana de alimentación abierta</string>
+    <string name="notif_eating_window_close">La ventana de alimentación cierra pronto</string>
     <string name="notif_hydration">No olvides hidratarte</string>
+    <string name="notif_fast_started_body">Tu ayuno ha comenzado. ¡Tú puedes!</string>
+    <string name="notif_fast_ended_body">Ya puedes comer. ¡Enhorabuena!</string>
+    <string name="notif_two_hours_title">Casi terminado</string>
+    <string name="notif_two_hours_body">Quedan unas 2 horas de ayuno.</string>
+    <string name="notif_fat_burn_title">Fase metabólica</string>
+    <string name="notif_fat_burn_body">Tu cuerpo está entrando en modo quema de grasa.</string>
+    <string name="notif_hydration_body">Recuerda beber agua durante tu ayuno.</string>
+    <string name="notif_streak_title">¡Bien hecho!</string>
+    <string name="notif_streak_body">%1$d días de ayuno consecutivos. ¡Sigue así!</string>
+    <string name="notif_eating_window_body">Tu ventana de alimentación está abierta.</string>
+    <string name="notif_settings_desc">Elige qué recordatorios quieres recibir.</string>
+    <string name="notif_toggle_all">Activar notificaciones</string>
+    <string name="notif_toggle_hydration">Recordatorios de hidratación</string>
+    <string name="notif_toggle_two_hours">Alerta de 2 horas restantes</string>
+    <string name="notif_toggle_fat_burn">Fase de quema de grasa</string>
+    <string name="notif_toggle_streak">Hitos de racha (3, 7, 14, 30 días)</string>
+    <string name="notif_toggle_quiet_hours">Horas de silencio</string>
+    <string name="notif_quiet_hours_label">Periodo de silencio</string>
+    <string name="notif_quiet_hours_current">Actual: %1$02dh → %2$02dh</string>
+
+    <string name="coach_title">Coach IA</string>
+    <string name="coach_welcome">Pregunta sobre el ayuno, el hambre, la hidratación o cómo romper el ayuno.</string>
+    <string name="coach_disclaimer">Solo consejos generales, no asesoramiento médico. Consulta a un profesional si tienes dudas.</string>
+    <string name="coach_quota">%1$d / %2$d preguntas gratuitas hoy</string>
+    <string name="coach_input_hint">Tu pregunta…</string>
+    <string name="coach_send">Enviar</string>
+    <string name="coach_clear">Borrar</string>
+    <string name="coach_suggestions_label">Sugerencias</string>
+    <string name="coach_suggestion_hungry">Tengo hambre</string>
+    <string name="coach_suggestion_break_fast">¿Qué comer después del ayuno?</string>
+    <string name="coach_suggestion_coffee">¿Puedo tomar café?</string>
+    <string name="coach_suggestion_tired">Me siento cansado</string>
+    <string name="nav_coach">Coach</string>
+    <string name="nav_home">Inicio</string>
+    <string name="nav_progress">Progreso</string>
+    <string name="nav_profile">Perfil</string>
+    <string name="dashboard_ready">¿Listo para ayunar?</string>
+    <string name="dashboard_plan_label">Plan: %1$s</string>
+    <string name="days_unit">días</string>
+    <string name="weight_goal">Objetivo</string>
+    <string name="progress_chart_hint">Añade al menos 2 pesajes para ver el gráfico</string>
+    <string name="profile_section_app">App</string>
+    <string name="profile_notifications_desc">Inicio, fin y motivación</string>
+    <string name="profile_section_plan">Ayuno</string>
+    <string name="profile_default_plan">Plan predeterminado</string>
+    <string name="profile_v1_note">Próximamente más funciones.</string>
+    <string name="notif_v1_desc">Notificaciones esenciales para tu ayuno.</string>
+    <string name="notif_v1_start_end_hint">Las alertas de inicio y fin se incluyen cuando las notificaciones están activadas.</string>
+    <string name="notif_v1_motivation_desc">Hitos a los 3, 7, 14 y 30 días</string>
+    <string name="error_title">Error</string>
+    <string name="ok">Aceptar</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slogan">Transforma tu salud con un ayuno más inteligente.</string>
+    <string name="onboarding_start">Empezar</string>
+    <string name="onboarding_continue">Continuar</string>
+    <string name="onboarding_continue_google">Continuar con Google</string>
+    <string name="onboarding_continue_apple">Continuar con Apple</string>
+    <string name="onboarding_auth_soon">Inicio de sesión próximamente — usa Empezar por ahora.</string>
+    <string name="onboarding_step_label">Paso %1$d de %2$d</string>
+    <string name="onboarding_goal_title">¿Cuál es tu objetivo principal?</string>
+    <string name="onboarding_goal_lose_weight">Perder peso</string>
+    <string name="onboarding_goal_energy">Más energía</string>
+    <string name="onboarding_goal_lifestyle">Estilo de vida saludable</string>
+    <string name="onboarding_goal_ramadan">Ayuno de Ramadán</string>
+    <string name="onboarding_profile_title">Perfil rápido</string>
+    <string name="onboarding_profile_subtitle">Lo justo para personalizar tu recorrido.</string>
+    <string name="onboarding_age">Edad</string>
+    <string name="onboarding_height">Altura</string>
+    <string name="onboarding_height_value">%1$d cm</string>
+    <string name="onboarding_weight">Peso actual</string>
+    <string name="onboarding_weight_value">%1$.1f kg</string>
+    <string name="onboarding_target_weight">Peso objetivo</string>
+    <string name="onboarding_experience_title">¿Has probado antes el ayuno intermitente?</string>
+    <string name="onboarding_level_beginner">Principiante</string>
+    <string name="onboarding_level_intermediate">Intermedio</string>
+    <string name="onboarding_level_advanced">Avanzado</string>
+    <string name="onboarding_recommendation_title">Te recomendamos:</string>
+    <string name="onboarding_fasting_hours">Horas de ayuno</string>
+    <string name="onboarding_eating_hours">Ventana de alimentación</string>
+    <string name="onboarding_hours_format">%1$d h</string>
+    <string name="onboarding_difficulty">Dificultad</string>
+    <string name="onboarding_difficulty_easy">Fácil</string>
+    <string name="onboarding_difficulty_moderate">Moderada</string>
+    <string name="onboarding_difficulty_challenging">Exigente</string>
+    <string name="onboarding_start_journey">Comenzar mi recorrido</string>
+
+    <string name="prediction_title">Predicciones</string>
+    <string name="prediction_set_goal">Establecer objetivo</string>
+    <string name="prediction_edit_goal">Editar</string>
+    <string name="prediction_in_4_weeks">En 4 semanas</string>
+    <string name="prediction_weekly_rate">Ritmo semanal</string>
+    <string name="prediction_recommended_plan">Plan recomendado</string>
+    <string name="prediction_goal_date">Fecha estimada: %1$s</string>
+
+    <string name="health_alert_dismiss">Descartar</string>
+
+    <string name="challenges_title">Mis retos</string>
+    <string name="nav_challenges">Retos</string>
+    <string name="challenges_badges_title">Insignias obtenidas</string>
+    <string name="challenges_available_title">Retos disponibles</string>
+    <string name="challenges_join">Unirse al reto</string>
+    <string name="challenges_abandon">Abandonar</string>
+    <string name="challenges_progress">%1$d / %2$d días válidos</string>
+    <string name="challenges_rule">%1$d días · ayuno ≥ %2$d h / día</string>
+    <string name="challenges_leaderboard_hint">Clasificación en línea: próximamente.</string>
+    <string name="challenge_7_days_title">Reto de 7 días</string>
+    <string name="challenge_7_days_desc">7 días de ayuno de 16 h o más para crear el hábito.</string>
+    <string name="challenge_30_days_title">Reto de 30 días</string>
+    <string name="challenge_30_days_desc">Un mes completo para transformar tu rutina.</string>
+    <string name="challenge_ramadan_title">Reto de Ramadán</string>
+    <string name="challenge_ramadan_desc">30 días de disciplina, ayuno de 14 h o más al día.</string>
+    <string name="challenge_summer_title">Cuerpo de verano</string>
+    <string name="challenge_summer_desc">30 días intensos, ayuno de 18 h o más al día.</string>
+    <string name="challenge_notif_half_title">Reto: ¡a mitad de camino!</string>
+    <string name="challenge_notif_half_body">%1$s — llevas el %2$d%% del reto. ¡Sigue así!</string>
+    <string name="challenge_notif_win_title">¡Reto completado!</string>
+    <string name="challenge_notif_win_body">¡Enhorabuena! Has terminado \"%1$s\". Insignia desbloqueada.</string>
+
+    <string name="community_title">Comunidad</string>
+    <string name="nav_community">Comunidad</string>
+    <string name="community_profile">Perfil</string>
+    <string name="community_share_progress">Compartir mi progreso</string>
+    <string name="community_compose">Publicar</string>
+    <string name="community_sync_hint">Feed local · sincronización en la nube próximamente.</string>
+    <string name="community_filter_all">Todo</string>
+    <string name="community_filter_motivation">Motivación</string>
+    <string name="community_filter_meals">Comidas</string>
+    <string name="community_filter_progress">Progreso</string>
+    <string name="community_group_all">Todos los grupos</string>
+    <string name="community_group_general">General</string>
+    <string name="community_group_ramadan">Ramadán</string>
+    <string name="community_group_summer">Verano</string>
+    <string name="community_empty">No hay publicaciones para este filtro.</string>
+    <string name="community_profile_prompt">Únete a la comunidad con un apodo (o permanece anónimo).</string>
+    <string name="community_setup_profile">Configurar perfil</string>
+    <string name="community_hide">Ocultar</string>
+    <string name="community_report">Reportar</string>
+    <string name="community_profile_title">Perfil de comunidad</string>
+    <string name="community_display_name">Apodo</string>
+    <string name="community_anonymous">Publicar de forma anónima</string>
+    <string name="community_compose_title">Nueva publicación</string>
+    <string name="community_compose_hint">Tu mensaje, idea de comida o motivación…</string>
+    <string name="community_publish">Publicar</string>
+    <string name="community_type_motivation">Motivación</string>
+    <string name="community_type_meal">Comida</string>
+    <string name="community_type_progress">Progreso</string>
+
+    <string name="meal_plan_title">Plan de comidas IA</string>
+    <string name="meal_plan_card_title">Generador de comidas</string>
+    <string name="meal_plan_card_desc">Plan personalizado para tus objetivos · Premium</string>
+    <string name="meal_tab_generate">Generar</string>
+    <string name="meal_tab_result">Resultado</string>
+    <string name="meal_tab_favorites">Favoritos</string>
+    <string name="meal_premium_hint">Premium: planes IA ilimitados. Gratis: plan local inteligente.</string>
+    <string name="meal_calories">Calorías / día</string>
+    <string name="meal_cuisine">Cocina / país</string>
+    <string name="meal_goal_label">Objetivo</string>
+    <string name="meal_goal_loss">Pérdida</string>
+    <string name="meal_goal_maintain">Mantener</string>
+    <string name="meal_goal_muscle">Músculo</string>
+    <string name="meal_diet_label">Dieta</string>
+    <string name="meal_diet_standard">Estándar</string>
+    <string name="meal_diet_halal">Halal</string>
+    <string name="meal_diet_vegetarian">Vegetariana</string>
+    <string name="meal_diet_vegan">Vegana</string>
+    <string name="meal_diet_keto">Keto</string>
+    <string name="meal_budget_label">Presupuesto</string>
+    <string name="meal_budget_low">Bajo</string>
+    <string name="meal_budget_medium">Medio</string>
+    <string name="meal_budget_high">Alto</string>
+    <string name="meal_days_label">Duración: %1$d día(s)</string>
+    <string name="meal_generate">Generar plan</string>
+    <string name="meal_generate_ai">Generar con IA</string>
+    <string name="meal_generate_local">Plan local (gratis)</string>
+    <string name="meal_no_plan">Genera un plan para ver el resultado.</string>
+    <string name="meal_shopping_list">Lista de la compra</string>
+    <string name="meal_export_shopping">Exportar lista</string>
+    <string name="meal_shopping_share_subject">Lista de la compra OneFast</string>
+    <string name="meal_history">Historial</string>
+    <string name="meal_history_empty">No hay planes guardados.</string>
+
+    <string name="health_sync_title">Salud conectada</string>
+    <string name="health_sync_desc">Sincroniza pasos, sueño, calorías y frecuencia cardíaca con Google Health Connect.</string>
+    <string name="health_sync_connect">Conectar Health Connect</string>
+    <string name="health_sync_now">Sincronizar ahora</string>
+    <string name="health_sync_not_installed">Instala la app Health Connect para continuar.</string>
+    <string name="health_sync_update_required">Actualiza Health Connect desde Play Store.</string>
+    <string name="health_sync_not_supported">Health Connect no está disponible en este dispositivo.</string>
+    <string name="health_sync_install">Abrir Play Store</string>
+    <string name="health_sync_write_weight">Exportar peso a Health Connect</string>
+    <string name="health_sync_metrics">Datos sincronizados</string>
+    <string name="health_sync_steps">Pasos</string>
+    <string name="health_sync_steps_avg">Media 7 d: %1$d</string>
+    <string name="health_sync_calories">Calorías activas</string>
+    <string name="health_sync_sleep">Sueño</string>
+    <string name="health_sync_last_night">anoche</string>
+    <string name="health_sync_heart">Frecuencia cardíaca</string>
+    <string name="health_sync_weight">Peso (HC)</string>
+    <string name="health_sync_from_hc">desde Health Connect</string>
+    <string name="health_sync_card_title">Salud conectada</string>
+    <string name="health_sync_card_connect">Conéctate para ver pasos, sueño y más</string>
+    <string name="health_sync_card_summary">%1$d pasos hoy · Sueño %2$s</string>
+
+    <string name="ramadan_title">Modo Ramadán</string>
+    <string name="ramadan_card_title">Modo Ramadán</string>
+    <string name="ramadan_card_desc">Iftar, suhur e hidratación para tu ciudad</string>
+    <string name="ramadan_card_enabled">Modo activo · Ver horarios</string>
+    <string name="ramadan_mode_label">Activar modo Ramadán</string>
+    <string name="ramadan_mode_desc">Horarios automáticos y recordatorios adaptados</string>
+    <string name="ramadan_city">Ciudad</string>
+    <string name="ramadan_country">País</string>
+    <string name="ramadan_refresh_times">Actualizar horarios de oración</string>
+    <string name="ramadan_hydration_reminders">Recordatorios de hidratación (entre iftar y suhur)</string>
+    <string name="ramadan_hijri_date">Fecha hijri: %1$s</string>
+    <string name="ramadan_iftar">Iftar (Maghrib)</string>
+    <string name="ramadan_suhoor">Suhur (Fajr)</string>
+    <string name="ramadan_until_iftar">Tiempo hasta el iftar</string>
+    <string name="ramadan_until_suhoor">Tiempo hasta el suhur</string>
+    <string name="ramadan_status_fasting">Ayunando</string>
+    <string name="ramadan_status_eating">Ventana de alimentación</string>
+    <string name="ramadan_start_fast">Iniciar el ayuno de hoy</string>
+    <string name="ramadan_tips_title">Consejos de nutrición</string>
+    <string name="ramadan_open_challenge">Ver reto de Ramadán</string>
+    <string name="ramadan_notif_iftar_title">Iftar</string>
+    <string name="ramadan_notif_iftar_body">Es hora de romper el ayuno. Empieza con agua y dátiles.</string>
+    <string name="ramadan_notif_suhoor_title">Suhur</string>
+    <string name="ramadan_notif_suhoor_body">El suhur termina pronto. Prepárate para el ayuno.</string>
+    <string name="ramadan_notif_hydration_title">Hidratación en Ramadán</string>
+    <string name="ramadan_notif_hydration_body">Bebe agua con regularidad antes del próximo ayuno.</string>
+    <string-array name="ramadan_tips">
+        <item>Rompe el ayuno con agua y 2–3 dátiles, luego una sopa ligera.</item>
+        <item>En el suhur: proteínas de absorción lenta (huevos, avena) y fibra.</item>
+        <item>Evita fritos y exceso de azúcar en el iftar.</item>
+        <item>Reparte la hidratación entre el iftar y el suhur.</item>
+        <item>Un paseo ligero después del iftar ayuda a la digestión.</item>
+    </string-array>
     
-    <!-- Premium -->
     <string name="premium_title">OneFast Premium</string>
     <string name="premium_subtitle">Desbloquea todas las funciones</string>
     <string name="premium_feature_1">Planes de ayuno avanzados</string>
@@ -48,17 +321,15 @@
     <string name="premium_feature_4">Recetas adaptadas</string>
     <string name="subscribe_monthly">Mensual - $9.99</string>
     <string name="subscribe_yearly">Anual - $59.99</string>
-    <string name="restore_purchase">Restaurar Compras</string>
+    <string name="restore_purchase">Restaurar compras</string>
     
-    <!-- Settings -->
-    <string name="settings_title">Configuración</string>
+    <string name="settings_title">Ajustes</string>
     <string name="notifications_settings">Notificaciones</string>
     <string name="language_settings">Idioma</string>
     <string name="units_settings">Unidades</string>
-    <string name="privacy_policy">Política de Privacidad</string>
-    <string name="terms_of_service">Términos de Servicio</string>
+    <string name="privacy_policy">Política de privacidad</string>
+    <string name="terms_of_service">Términos del servicio</string>
     
-    <!-- Common -->
     <string name="save">Guardar</string>
     <string name="cancel">Cancelar</string>
     <string name="delete">Eliminar</string>

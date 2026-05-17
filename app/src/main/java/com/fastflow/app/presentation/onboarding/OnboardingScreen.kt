@@ -34,6 +34,7 @@ import com.fastflow.app.domain.model.OnboardingGoal
 import com.fastflow.app.domain.onboarding.FastingPlanRecommender
 import com.fastflow.app.domain.onboarding.PlanDifficulty
 import com.fastflow.app.presentation.components.LanguageSelector
+import com.fastflow.app.presentation.localization.LocalizedApp
 import com.fastflow.app.presentation.theme.AccentBlue
 import com.fastflow.app.presentation.theme.AccentOrange
 import com.fastflow.app.presentation.localization.localizedName
@@ -51,6 +52,7 @@ fun OnboardingScreen(
     val authSoonMessage = stringResource(R.string.onboarding_auth_soon)
     val activity = LocalContext.current as Activity
 
+    LocalizedApp(languageTag = uiState.languageTag) {
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         containerColor = PrimaryBlueNight
@@ -129,6 +131,7 @@ fun OnboardingScreen(
                 }
             }
         }
+    }
     }
 }
 

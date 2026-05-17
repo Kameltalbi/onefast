@@ -121,6 +121,11 @@
     <string name="nav_home">Accueil</string>
     <string name="nav_progress">Progrès</string>
     <string name="nav_profile">Profil</string>
+    <string name="nav_more">Plus</string>
+    <string name="nav_history">Historique</string>
+    <string name="more_section_features">Fonctions</string>
+    <string name="history_empty">Aucun jeûne terminé pour l\'instant</string>
+    <string name="history_duration">Durée : %1$dh %2$dmin</string>
     <string name="dashboard_ready">Prêt à jeûner ?</string>
     <string name="dashboard_plan_label">Plan : %1$s</string>
     <string name="days_unit">jours</string>
@@ -130,7 +135,6 @@
     <string name="profile_notifications_desc">Début, fin et motivation</string>
     <string name="profile_section_plan">Jeûne</string>
     <string name="profile_default_plan">Plan par défaut</string>
-    <string name="profile_v1_note">D\'autres fonctions arriveront progressivement.</string>
     <string name="notif_v1_desc">Notifications essentielles pour votre jeûne.</string>
     <string name="notif_v1_start_end_hint">Début et fin de jeûne inclus lorsque les notifications sont activées.</string>
     <string name="notif_v1_motivation_desc">Séries de 3, 7, 14 et 30 jours</string>

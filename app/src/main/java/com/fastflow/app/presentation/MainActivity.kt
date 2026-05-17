@@ -3,18 +3,22 @@ package com.fastflow.app.presentation
 import android.Manifest
 import android.os.Build
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Psychology
 import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -25,10 +29,18 @@ import androidx.navigation.compose.rememberNavController
 import com.fastflow.app.R
 import com.fastflow.app.core.locale.AppLocaleManager
 import com.fastflow.app.data.preferences.PreferencesManager
+import com.fastflow.app.presentation.challenges.ChallengesScreen
 import com.fastflow.app.presentation.coach.CoachScreen
+import com.fastflow.app.presentation.community.CommunityScreen
 import com.fastflow.app.presentation.dashboard.DashboardScreen
+import com.fastflow.app.presentation.healthsync.HealthSyncScreen
+import com.fastflow.app.presentation.history.FastingHistoryScreen
+import com.fastflow.app.presentation.localization.LocalizedApp
+import com.fastflow.app.presentation.meal.MealPlanScreen
+import com.fastflow.app.presentation.more.MoreScreen
 import com.fastflow.app.presentation.onboarding.OnboardingScreen
 import com.fastflow.app.presentation.profile.ProfileScreen
+import com.fastflow.app.presentation.ramadan.RamadanScreen
 import com.fastflow.app.presentation.settings.NotificationSettingsScreen
 import com.fastflow.app.presentation.theme.FastFlowTheme
 import com.fastflow.app.presentation.weight.WeightScreen
@@ -37,31 +49,44 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+private val bottomNavRoutes = setOf("home", "progress", "coach", "more", "profile")
+
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var preferencesManager: PreferencesManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        runBlocking {
-            val language = preferencesManager.getAppLanguageOnce()
-                ?: AppLocaleManager.defaultLanguageTag()
-            AppLocaleManager.apply(language)
-        }
         super.onCreate(savedInstanceState)
-        setContent {
-            FastFlowTheme {
-                val isOnboardingCompleted = runBlocking {
-                    preferencesManager.isOnboardingCompleted.first()
-                }
+        val language = runBlocking {
+            preferencesManager.getAppLanguageOnce()
+                ?: AppLocaleManager.defaultLanguageTag()
+        }
+        AppLocaleManager.apply(language)
 
-                if (isOnboardingCompleted) {
-                    FastFlowTheme {
-                        MainScreen()
+        setContent {
+            var languageTag by remember { mutableStateOf(language) }
+            var isOnboardingCompleted by remember { mutableStateOf<Boolean?>(null) }
+
+            LaunchedEffect(Unit) {
+                isOnboardingCompleted = preferencesManager.isOnboardingCompleted.first()
+            }
+
+            LocalizedApp(languageTag = languageTag) {
+                FastFlowTheme {
+                    when (isOnboardingCompleted) {
+                        true -> MainScreen()
+                        false -> OnboardingFlow()
+                        null -> {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                CircularProgressIndicator()
+                            }
+                        }
                     }
-                } else {
-                    OnboardingFlow()
                 }
             }
         }
@@ -85,6 +110,7 @@ fun OnboardingFlow() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -103,9 +129,7 @@ fun MainScreen() {
 
     Scaffold(
         bottomBar = {
-            if (currentRoute == "home" || currentRoute == "progress" ||
-                currentRoute == "coach" || currentRoute == "profile"
-            ) {
+            if (currentRoute in bottomNavRoutes) {
                 NavigationBar {
                     NavigationBarItem(
                         icon = { Icon(Icons.Default.Home, contentDescription = null) },
@@ -138,6 +162,16 @@ fun MainScreen() {
                         }
                     )
                     NavigationBarItem(
+                        icon = { Icon(Icons.Default.Apps, contentDescription = null) },
+                        label = { Text(stringResource(R.string.nav_more)) },
+                        selected = currentRoute == "more",
+                        onClick = {
+                            navController.navigate("more") {
+                                popUpTo("home")
+                            }
+                        }
+                    )
+                    NavigationBarItem(
                         icon = { Icon(Icons.Default.Person, contentDescription = null) },
                         label = { Text(stringResource(R.string.nav_profile)) },
                         selected = currentRoute == "profile",
@@ -159,6 +193,11 @@ fun MainScreen() {
             composable("home") { DashboardScreen() }
             composable("progress") { WeightScreen() }
             composable("coach") { CoachScreen() }
+            composable("more") {
+                MoreScreen(onNavigate = { route ->
+                    navController.navigate(route) { launchSingleTop = true }
+                })
+            }
             composable("profile") {
                 ProfileScreen(
                     onOpenNotifications = { navController.navigate("notifications") }
@@ -166,6 +205,24 @@ fun MainScreen() {
             }
             composable("notifications") {
                 NotificationSettingsScreen(onBack = { navController.popBackStack() })
+            }
+            composable("challenges") {
+                ChallengesScreen(onBack = { navController.popBackStack() })
+            }
+            composable("community") {
+                CommunityScreen(onBack = { navController.popBackStack() })
+            }
+            composable("history") {
+                FastingHistoryScreen(onBack = { navController.popBackStack() })
+            }
+            composable("meal_plan") {
+                MealPlanScreen(onBack = { navController.popBackStack() })
+            }
+            composable("health_sync") {
+                HealthSyncScreen(onBack = { navController.popBackStack() })
+            }
+            composable("ramadan") {
+                RamadanScreen(onBack = { navController.popBackStack() })
             }
         }
     }
