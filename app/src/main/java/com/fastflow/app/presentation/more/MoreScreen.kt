@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.fastflow.app.R
+import com.fastflow.app.presentation.components.OneFastTopBarLogo
 
 data class MoreMenuEntry(
     val route: String,
@@ -70,10 +71,7 @@ fun MoreScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        stringResource(R.string.nav_more),
-                        fontWeight = FontWeight.Bold
-                    )
+                    OneFastTopBarLogo(contentDescription = stringResource(R.string.nav_more))
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,

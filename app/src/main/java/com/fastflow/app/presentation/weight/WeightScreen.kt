@@ -17,6 +17,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.fastflow.app.R
+import com.fastflow.app.presentation.components.OneFastLogo
+import com.fastflow.app.presentation.components.OneFastLogoVariant
 import com.fastflow.app.presentation.components.StatsCard
 import com.fastflow.app.presentation.components.WeightLineChart
 import com.fastflow.app.presentation.dashboard.SetWeightGoalDialog
@@ -43,10 +45,10 @@ fun WeightScreen(
                 .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(
-                text = stringResource(R.string.nav_progress),
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold
+            OneFastLogo(
+                variant = OneFastLogoVariant.Full,
+                width = 160.dp,
+                height = 70.dp
             )
 
             Row(

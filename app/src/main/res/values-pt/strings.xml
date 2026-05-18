@@ -323,6 +323,9 @@
     <string name="subscribe_yearly">Anual - $59.99</string>
     <string name="restore_purchase">Restaurar compras</string>
     
+    <string name="settings_section_app">App</string>
+    <string name="settings_section_fasting">Jejum</string>
+    <string name="settings_change_plan">Alterar plano</string>
     <string name="settings_title">Configurações</string>
     <string name="notifications_settings">Notificações</string>
     <string name="language_settings">Idioma</string>

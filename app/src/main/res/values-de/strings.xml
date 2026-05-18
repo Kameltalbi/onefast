@@ -323,6 +323,9 @@
     <string name="subscribe_yearly">Jährlich – 59,99 $</string>
     <string name="restore_purchase">Käufe wiederherstellen</string>
     
+    <string name="settings_section_app">App</string>
+    <string name="settings_section_fasting">Fasten</string>
+    <string name="settings_change_plan">Plan ändern</string>
     <string name="settings_title">Einstellungen</string>
     <string name="notifications_settings">Benachrichtigungen</string>
     <string name="language_settings">Sprache</string>

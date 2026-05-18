@@ -7,6 +7,9 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.fastflow.app.presentation.components.OneFastLogo
+import com.fastflow.app.presentation.components.OneFastLogoVariant
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,6 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -40,6 +44,7 @@ import com.fastflow.app.presentation.meal.MealPlanScreen
 import com.fastflow.app.presentation.more.MoreScreen
 import com.fastflow.app.presentation.onboarding.OnboardingScreen
 import com.fastflow.app.presentation.profile.ProfileScreen
+import com.fastflow.app.presentation.settings.SettingsScreen
 import com.fastflow.app.presentation.ramadan.RamadanScreen
 import com.fastflow.app.presentation.settings.NotificationSettingsScreen
 import com.fastflow.app.presentation.theme.FastFlowTheme
@@ -57,7 +62,11 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var preferencesManager: PreferencesManager
 
+    private var keepSplashOnScreen = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+        splashScreen.setKeepOnScreenCondition { keepSplashOnScreen }
         super.onCreate(savedInstanceState)
         val language = runBlocking {
             preferencesManager.getAppLanguageOnce()
@@ -71,6 +80,7 @@ class MainActivity : AppCompatActivity() {
 
             LaunchedEffect(Unit) {
                 isOnboardingCompleted = preferencesManager.isOnboardingCompleted.first()
+                keepSplashOnScreen = false
             }
 
             LocalizedApp(languageTag = languageTag) {
@@ -83,7 +93,11 @@ class MainActivity : AppCompatActivity() {
                                 modifier = Modifier.fillMaxSize(),
                                 contentAlignment = Alignment.Center
                             ) {
-                                CircularProgressIndicator()
+                                OneFastLogo(
+                                    variant = OneFastLogoVariant.Full,
+                                    width = 220.dp,
+                                    height = 96.dp
+                                )
                             }
                         }
                     }
@@ -200,6 +214,12 @@ fun MainScreen() {
             }
             composable("profile") {
                 ProfileScreen(
+                    onOpenSettings = { navController.navigate("settings") }
+                )
+            }
+            composable("settings") {
+                SettingsScreen(
+                    onBack = { navController.popBackStack() },
                     onOpenNotifications = { navController.navigate("notifications") }
                 )
             }

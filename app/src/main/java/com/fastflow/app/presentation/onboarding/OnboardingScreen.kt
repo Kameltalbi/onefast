@@ -34,6 +34,8 @@ import com.fastflow.app.domain.model.OnboardingGoal
 import com.fastflow.app.domain.onboarding.FastingPlanRecommender
 import com.fastflow.app.domain.onboarding.PlanDifficulty
 import com.fastflow.app.presentation.components.LanguageSelector
+import com.fastflow.app.presentation.components.OneFastLogo
+import com.fastflow.app.presentation.components.OneFastLogoVariant
 import com.fastflow.app.presentation.localization.LocalizedApp
 import com.fastflow.app.presentation.theme.AccentBlue
 import com.fastflow.app.presentation.theme.AccentOrange
@@ -183,33 +185,13 @@ private fun WelcomeStep(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Box(
-            modifier = Modifier
-                .size(120.dp)
-                .clip(CircleShape)
-                .background(
-                    Brush.radialGradient(
-                        colors = listOf(AccentBlue.copy(alpha = 0.5f), PrimaryBlueNight)
-                    )
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "⏱",
-                fontSize = 52.sp
-            )
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Text(
-            text = stringResource(R.string.app_name),
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground
+        OneFastLogo(
+            variant = OneFastLogoVariant.Full,
+            width = 240.dp,
+            height = 106.dp
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = stringResource(R.string.onboarding_slogan),

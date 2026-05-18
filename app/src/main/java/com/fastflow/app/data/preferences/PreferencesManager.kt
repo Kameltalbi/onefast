@@ -57,6 +57,7 @@ class PreferencesManager @Inject constructor(
         private val CUSTOM_EATING_HOURS = intPreferencesKey("custom_eating_hours")
         private val USER_HEIGHT_CM = floatPreferencesKey("user_height_cm")
         private val USER_AGE = intPreferencesKey("user_age")
+        private val USER_EMAIL = stringPreferencesKey("user_email")
         private val ONBOARDING_GOAL = stringPreferencesKey("onboarding_goal")
         private val FASTING_EXPERIENCE = stringPreferencesKey("fasting_experience")
         private val APP_LANGUAGE = stringPreferencesKey("app_language")
@@ -199,6 +200,29 @@ class PreferencesManager @Inject constructor(
     suspend fun setFastingExperience(level: String) {
         dataStore.edit { preferences ->
             preferences[FASTING_EXPERIENCE] = level
+        }
+    }
+
+    val onboardingGoal: Flow<String?> = dataStore.data.map { it[ONBOARDING_GOAL] }
+
+    val fastingExperience: Flow<String?> = dataStore.data.map { it[FASTING_EXPERIENCE] }
+
+    suspend fun getOnboardingGoalOnce(): String? = onboardingGoal.first()
+
+    suspend fun getFastingExperienceOnce(): String? = fastingExperience.first()
+
+    val userEmail: Flow<String?> = dataStore.data.map { it[USER_EMAIL] }
+
+    suspend fun getUserEmailOnce(): String? = userEmail.first()
+
+    suspend fun setUserEmail(email: String) {
+        dataStore.edit { preferences ->
+            val trimmed = email.trim()
+            if (trimmed.isEmpty()) {
+                preferences.remove(USER_EMAIL)
+            } else {
+                preferences[USER_EMAIL] = trimmed
+            }
         }
     }
 

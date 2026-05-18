@@ -65,7 +65,7 @@ class NotificationHelper @Inject constructor(
 
     private fun baseNotification(title: String, text: String, priority: Int = NotificationCompat.PRIORITY_HIGH) =
         NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification)
+            .setSmallIcon(R.drawable.ic_logo_notification)
             .setContentTitle(title)
             .setContentText(text)
             .setPriority(priority)

@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.fastflow.app.R
 import com.fastflow.app.domain.model.ChatRole
+import com.fastflow.app.presentation.components.OneFastTopBarLogo
 import com.fastflow.app.presentation.theme.AccentBlue
 import kotlinx.coroutines.launch
 
@@ -48,7 +49,7 @@ fun CoachScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.coach_title), fontWeight = FontWeight.Bold) },
+                title = { OneFastTopBarLogo(contentDescription = stringResource(R.string.coach_title)) },
                 actions = {
                     if (uiState.messages.isNotEmpty()) {
                         IconButton(onClick = { viewModel.clearHistory() }) {

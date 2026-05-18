@@ -7,14 +7,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/widget_plan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OneFast"
-        android:textColor="#1A1A2E"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/widget_logo"
+        android:layout_width="100dp"
+        android:layout_height="44dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitStart"
+        android:src="@drawable/logo_onefast" />
 
     <TextView
         android:id="@+id/widget_status"
@@ -22,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Jeûne"
-        android:textColor="#4361EE"
+        android:textColor="#016AEB"
         android:textSize="14sp" />
 
     <TextView
@@ -50,7 +49,7 @@
         android:layout_marginTop="12dp"
         android:max="100"
         android:progress="0"
-        android:progressTint="#4361EE" />
+        android:progressTint="#016AEB" />
 
     <TextView
         android:id="@+id/widget_progress"

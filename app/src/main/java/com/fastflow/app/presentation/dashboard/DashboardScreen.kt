@@ -18,6 +18,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.fastflow.app.R
 import com.fastflow.app.domain.model.FastingStatus
 import com.fastflow.app.presentation.components.FastingCircle
+import com.fastflow.app.presentation.components.OneFastLogo
+import com.fastflow.app.presentation.components.OneFastLogoVariant
 import com.fastflow.app.presentation.localization.localizedName
 import com.fastflow.app.presentation.components.GiantActionButton
 import com.fastflow.app.presentation.components.MotivationBanner
@@ -42,10 +44,10 @@ fun DashboardScreen(
             .padding(horizontal = 20.dp, vertical = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = stringResource(R.string.nav_home),
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold,
+        OneFastLogo(
+            variant = OneFastLogoVariant.Full,
+            width = 160.dp,
+            height = 70.dp,
             modifier = Modifier.fillMaxWidth()
         )
 

@@ -323,6 +323,9 @@
     <string name="subscribe_yearly">Yıllık - $59.99</string>
     <string name="restore_purchase">Satın alımları geri yükle</string>
 
+    <string name="settings_section_app">Uygulama</string>
+    <string name="settings_section_fasting">Oruç</string>
+    <string name="settings_change_plan">Planı değiştir</string>
     <string name="settings_title">Ayarlar</string>
     <string name="notifications_settings">Bildirimler</string>
     <string name="language_settings">Dil</string>

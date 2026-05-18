@@ -28,13 +28,10 @@ class FastingWidgetProvider : AppWidgetProvider() {
         val status = prefs.getString(WidgetStateManager.KEY_STATUS, "Inactif") ?: "Inactif"
         val time = prefs.getString(WidgetStateManager.KEY_TIME, "--:--") ?: "--:--"
         val progress = prefs.getInt(WidgetStateManager.KEY_PROGRESS, 0)
-        val plan = prefs.getString(WidgetStateManager.KEY_PLAN, "OneFast") ?: "OneFast"
-
         val views = RemoteViews(context.packageName, R.layout.widget_fasting).apply {
             setTextViewText(R.id.widget_status, status)
             setTextViewText(R.id.widget_time, time)
             setTextViewText(R.id.widget_progress, "$progress%")
-            setTextViewText(R.id.widget_plan, plan)
             setProgressBar(R.id.widget_progress_bar, 100, progress, false)
         }
 

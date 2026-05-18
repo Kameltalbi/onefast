@@ -323,6 +323,9 @@
     <string name="subscribe_yearly">سنوي - $59.99</string>
     <string name="restore_purchase">استعادة المشتريات</string>
     
+    <string name="settings_section_app">التطبيق</string>
+    <string name="settings_section_fasting">الصيام</string>
+    <string name="settings_change_plan">تغيير الخطة</string>
     <string name="settings_title">الإعدادات</string>
     <string name="notifications_settings">الإشعارات</string>
     <string name="language_settings">اللغة</string>

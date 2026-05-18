@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 val PrimaryBlueNight = Color(0xFF0B192C)
 val AccentBlue = Color(0xFF016AEB)
-val AccentOrange = Color(0xFFFFB200)
+val AccentOrange = Color(0xFFF27121)
 val BackgroundLight = Color(0xFFF5F7F8)
 val TextAnthracite = Color(0xFF2C3E50)
 
@@ -12,7 +12,7 @@ val md_theme_light_primary = Color(0xFF016AEB)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFD6E3FF)
 val md_theme_light_onPrimaryContainer = Color(0xFF001B3D)
-val md_theme_light_secondary = Color(0xFFFFB200)
+val md_theme_light_secondary = Color(0xFFF27121)
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 val md_theme_light_secondaryContainer = Color(0xFFFFE9C5)
 val md_theme_light_onSecondaryContainer = Color(0xFF2A1800)
