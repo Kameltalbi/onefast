@@ -22,6 +22,7 @@ class AlarmScheduler @Inject constructor(
         const val ACTION_FAT_BURN_PHASE = "com.fastflow.app.FAT_BURN_PHASE"
         const val ACTION_HYDRATION_REMINDER = "com.fastflow.app.HYDRATION_REMINDER"
         const val ACTION_EATING_WINDOW_OPEN = "com.fastflow.app.EATING_WINDOW_OPEN"
+        const val ACTION_EATING_WINDOW_END = "com.fastflow.app.EATING_WINDOW_END"
         const val ACTION_RAMADAN_IFTAR = "com.fastflow.app.RAMADAN_IFTAR"
         const val ACTION_RAMADAN_SUHOOR = "com.fastflow.app.RAMADAN_SUHOOR"
         const val ACTION_RAMADAN_HYDRATION = "com.fastflow.app.RAMADAN_HYDRATION"
@@ -75,6 +76,7 @@ class AlarmScheduler @Inject constructor(
             cancelAlarm(requestCode, ACTION_FAT_BURN_PHASE)
             cancelAlarm(requestCode, ACTION_HYDRATION_REMINDER)
             cancelAlarm(requestCode, ACTION_EATING_WINDOW_OPEN)
+            cancelAlarm(requestCode, ACTION_EATING_WINDOW_END)
         }
         cancelRamadanAlarms()
     }

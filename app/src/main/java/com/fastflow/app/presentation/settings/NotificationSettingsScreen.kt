@@ -74,6 +74,15 @@ fun NotificationSettingsScreen(
                     viewModel.updatePreferences(prefs.copy(streakMilestonesEnabled = it))
                 }
             )
+            NotificationSwitch(
+                title = stringResource(R.string.notif_toggle_hydration),
+                subtitle = stringResource(R.string.hydration_reminders_desc),
+                checked = prefs.hydrationEnabled,
+                enabled = prefs.enabled,
+                onCheckedChange = {
+                    viewModel.updatePreferences(prefs.copy(hydrationEnabled = it))
+                }
+            )
         }
     }
 }

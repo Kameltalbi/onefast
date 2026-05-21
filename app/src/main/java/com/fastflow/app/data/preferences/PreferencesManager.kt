@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.fastflow.app.domain.model.CoachQuota
+import com.fastflow.app.domain.model.SubscriptionTier
 import com.fastflow.app.domain.model.CommunityProfile
 import com.fastflow.app.domain.model.NotificationPreferences
 import com.fastflow.app.domain.model.ramadan.RamadanSettings
@@ -33,9 +34,13 @@ class PreferencesManager @Inject constructor(
 
     companion object {
         private val ONBOARDING_COMPLETED = booleanPreferencesKey("onboarding_completed")
+        private val NOTIFICATION_PERMISSION_ASKED = booleanPreferencesKey("notification_permission_asked")
+        private val EXACT_ALARM_PERMISSION_ASKED = booleanPreferencesKey("exact_alarm_permission_asked")
         private val DEFAULT_FASTING_TYPE = stringPreferencesKey("default_fasting_type")
         private val NOTIFICATIONS_ENABLED = booleanPreferencesKey("notifications_enabled")
         private val HYDRATION_REMINDERS = booleanPreferencesKey("hydration_reminders")
+        private val HYDRATION_GOAL_ML = intPreferencesKey("hydration_goal_ml")
+        private val HYDRATION_GLASS_ML = intPreferencesKey("hydration_glass_ml")
         private val TWO_HOURS_LEFT_ENABLED = booleanPreferencesKey("two_hours_left_enabled")
         private val FAT_BURN_ENABLED = booleanPreferencesKey("fat_burn_enabled")
         private val STREAK_MILESTONES_ENABLED = booleanPreferencesKey("streak_milestones_enabled")
@@ -46,6 +51,7 @@ class PreferencesManager @Inject constructor(
         private val COACH_QUESTIONS_DATE = longPreferencesKey("coach_questions_date")
         private val COACH_QUESTIONS_COUNT = intPreferencesKey("coach_questions_count")
         private val IS_PREMIUM_USER = booleanPreferencesKey("is_premium_user")
+        private val SUBSCRIPTION_TIER = stringPreferencesKey("subscription_tier")
         private val TARGET_WEIGHT_KG = floatPreferencesKey("target_weight_kg")
         private val DISMISSED_HEALTH_ALERTS = stringPreferencesKey("dismissed_health_alerts")
         private val FATIGUE_MENTION_TIMESTAMPS = stringPreferencesKey("fatigue_mention_timestamps")
@@ -90,6 +96,24 @@ class PreferencesManager @Inject constructor(
         }
     }
 
+    suspend fun getNotificationPermissionAskedOnce(): Boolean =
+        dataStore.data.map { it[NOTIFICATION_PERMISSION_ASKED] ?: false }.first()
+
+    suspend fun setNotificationPermissionAsked(asked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[NOTIFICATION_PERMISSION_ASKED] = asked
+        }
+    }
+
+    suspend fun getExactAlarmPermissionAskedOnce(): Boolean =
+        dataStore.data.map { it[EXACT_ALARM_PERMISSION_ASKED] ?: false }.first()
+
+    suspend fun setExactAlarmPermissionAsked(asked: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[EXACT_ALARM_PERMISSION_ASKED] = asked
+        }
+    }
+
     val defaultFastingType: Flow<String?> = dataStore.data.map { preferences ->
         preferences[DEFAULT_FASTING_TYPE]
     }
@@ -119,6 +143,30 @@ class PreferencesManager @Inject constructor(
     suspend fun setHydrationRemindersEnabled(enabled: Boolean) {
         dataStore.edit { preferences ->
             preferences[HYDRATION_REMINDERS] = enabled
+        }
+    }
+
+    val hydrationGoalMl: Flow<Int> = dataStore.data.map { preferences ->
+        preferences[HYDRATION_GOAL_ML] ?: 2000
+    }
+
+    val hydrationGlassMl: Flow<Int> = dataStore.data.map { preferences ->
+        preferences[HYDRATION_GLASS_ML] ?: 250
+    }
+
+    suspend fun getHydrationGoalMlOnce(): Int = hydrationGoalMl.first()
+
+    suspend fun getHydrationGlassMlOnce(): Int = hydrationGlassMl.first()
+
+    suspend fun setHydrationGoalMl(ml: Int) {
+        dataStore.edit { preferences ->
+            preferences[HYDRATION_GOAL_ML] = ml.coerceIn(500, 5000)
+        }
+    }
+
+    suspend fun setHydrationGlassMl(ml: Int) {
+        dataStore.edit { preferences ->
+            preferences[HYDRATION_GLASS_ML] = ml.coerceIn(100, 500)
         }
     }
 
@@ -276,12 +324,40 @@ class PreferencesManager @Inject constructor(
         }
     }
 
+    val subscriptionTier: Flow<SubscriptionTier> = dataStore.data.map { prefs ->
+        resolveSubscriptionTier(prefs)
+    }
+
+    suspend fun getSubscriptionTierOnce(): SubscriptionTier =
+        subscriptionTier.first()
+
+    suspend fun setSubscriptionTier(tier: SubscriptionTier) {
+        dataStore.edit { prefs ->
+            prefs[SUBSCRIPTION_TIER] = tier.name
+            prefs[IS_PREMIUM_USER] = tier.hasAtLeast(SubscriptionTier.PREMIUM)
+        }
+    }
+
     suspend fun isPremiumUserOnce(): Boolean =
-        dataStore.data.map { it[IS_PREMIUM_USER] ?: false }.first()
+        getSubscriptionTierOnce().hasAtLeast(SubscriptionTier.PREMIUM)
+
+    suspend fun isProUserOnce(): Boolean =
+        getSubscriptionTierOnce().hasAtLeast(SubscriptionTier.PRO)
 
     suspend fun setPremiumUser(premium: Boolean) {
-        dataStore.edit { prefs ->
-            prefs[IS_PREMIUM_USER] = premium
+        setSubscriptionTier(
+            if (premium) SubscriptionTier.PREMIUM else SubscriptionTier.FREE
+        )
+    }
+
+    private fun resolveSubscriptionTier(prefs: Preferences): SubscriptionTier {
+        prefs[SUBSCRIPTION_TIER]?.let { stored ->
+            return SubscriptionTier.fromName(stored)
+        }
+        return if (prefs[IS_PREMIUM_USER] == true) {
+            SubscriptionTier.PREMIUM
+        } else {
+            SubscriptionTier.FREE
         }
     }
 

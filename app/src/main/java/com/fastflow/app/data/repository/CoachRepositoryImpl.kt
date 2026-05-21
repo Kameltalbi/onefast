@@ -33,10 +33,11 @@ class CoachRepositoryImpl @Inject constructor(
         }
 
         if (!preferencesManager.isPremiumUserOnce() &&
+            !preferencesManager.isProUserOnce() &&
             preferencesManager.getRemainingCoachQuestionsOnce() <= 0
         ) {
             return Result.failure(
-                Exception("Limite gratuite atteinte (${CoachQuota.FREE_DAILY_LIMIT} questions/jour). Passez Premium pour l'illimité.")
+                Exception("Limite gratuite atteinte (${CoachQuota.FREE_DAILY_LIMIT} questions/jour). Passez Pro ou Premium pour l'illimité.")
             )
         }
 
@@ -72,7 +73,7 @@ class CoachRepositoryImpl @Inject constructor(
         )
         val id = chatDao.insert(assistantEntity)
 
-        if (!preferencesManager.isPremiumUserOnce()) {
+        if (!preferencesManager.isProUserOnce()) {
             preferencesManager.incrementCoachQuestionCount()
         }
 
@@ -94,7 +95,7 @@ class CoachRepositoryImpl @Inject constructor(
         preferencesManager.getRemainingCoachQuestionsOnce()
 
     override suspend fun isPremiumUser(): Boolean =
-        preferencesManager.isPremiumUserOnce()
+        preferencesManager.isProUserOnce()
 
     private fun isFatigueRelated(message: String): Boolean {
         val lower = message.lowercase()

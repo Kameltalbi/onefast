@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.fastflow.app.R
 import com.fastflow.app.domain.model.FastingSession
+import com.fastflow.app.presentation.components.StatsCard
+import com.fastflow.app.presentation.components.UpgradeBanner
 import com.fastflow.app.presentation.localization.getLabel
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -26,6 +28,7 @@ import java.util.concurrent.TimeUnit
 @Composable
 fun FastingHistoryScreen(
     onBack: (() -> Unit)? = null,
+    onOpenPricing: () -> Unit = {},
     viewModel: FastingHistoryViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -65,30 +68,108 @@ fun FastingHistoryScreen(
                     CircularProgressIndicator()
                 }
             }
-            uiState.sessions.isEmpty() -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(paddingValues),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = stringResource(R.string.history_empty),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
-                    )
-                }
-            }
             else -> {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(paddingValues),
                     contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    items(uiState.sessions) { session ->
-                        HistorySessionCard(session)
+                    if (uiState.isHistoryLimited) {
+                        item {
+                            UpgradeBanner(
+                                message = stringResource(R.string.pricing_history_limited),
+                                onUpgradeClick = onOpenPricing
+                            )
+                        }
+                    }
+
+                    item {
+                        Text(
+                            text = stringResource(R.string.stats_title),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        if (uiState.hasAdvancedStats) {
+                            FastingStatsSection(stats = uiState.stats)
+                        } else {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                            ) {
+                                StatsCard(
+                                    title = stringResource(R.string.current_streak),
+                                    value = "${uiState.stats.currentStreak}",
+                                    subtitle = stringResource(R.string.days_unit),
+                                    modifier = Modifier.weight(1f)
+                                )
+                                StatsCard(
+                                    title = stringResource(R.string.stats_total_fasts),
+                                    value = "${uiState.stats.totalFastsCompleted}",
+                                    modifier = Modifier.weight(1f)
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(12.dp))
+                            UpgradeBanner(
+                                message = stringResource(R.string.pricing_upgrade_pro),
+                                onUpgradeClick = onOpenPricing
+                            )
+                        }
+                    }
+
+                    if (uiState.hasCalendar) {
+                        item {
+                            Text(
+                                text = stringResource(R.string.calendar_title),
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            FastingCalendarGrid(
+                                monthLabel = uiState.monthLabel,
+                                cells = uiState.calendarCells,
+                                selectedDayMillis = uiState.selectedDayMillis,
+                                onPreviousMonth = viewModel::previousMonth,
+                                onNextMonth = viewModel::nextMonth,
+                                onDaySelected = viewModel::selectDay
+                            )
+                        }
+                    }
+
+                    item {
+                        val sectionTitle = if (uiState.selectedDayMillis != null) {
+                            stringResource(R.string.history_day_sessions)
+                        } else {
+                            stringResource(R.string.history_recent)
+                        }
+                        Text(
+                            text = sectionTitle,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    val sessions = uiState.visibleSessions
+                    if (sessions.isEmpty()) {
+                        item {
+                            Text(
+                                text = if (uiState.allSessions.isEmpty()) {
+                                    stringResource(R.string.history_empty)
+                                } else {
+                                    stringResource(R.string.history_day_empty)
+                                },
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                            )
+                        }
+                    } else {
+                        items(sessions) { session ->
+                            HistorySessionCard(session)
+                        }
                     }
                 }
             }

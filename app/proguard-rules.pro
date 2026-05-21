@@ -3,8 +3,9 @@
 # proguardFiles setting in build.gradle.
 
 # Keep data classes
--keep class com.onefast.app.domain.model.** { *; }
--keep class com.onefast.app.data.local.entity.** { *; }
+-keep class com.fastflow.app.domain.model.** { *; }
+-keep class com.fastflow.app.data.local.entity.** { *; }
+-keep class com.fastflow.app.data.billing.** { *; }
 
 # Room
 -keep class * extends androidx.room.RoomDatabase

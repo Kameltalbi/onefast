@@ -168,6 +168,18 @@ class NotificationHelper @Inject constructor(
         )
     }
 
+    fun showEatingWindowCloseNotification() {
+        val prefs = prefsBlocking()
+        if (!shouldShow(prefs)) return
+        notificationManager.notify(
+            NOTIFICATION_ID_REMINDER,
+            baseNotification(
+                context.getString(R.string.notif_eating_window_close),
+                context.getString(R.string.notif_fasting_start_body)
+            ).build()
+        )
+    }
+
     fun showChallengeMilestoneNotification(type: ChallengeType, percent: Int) {
         val prefs = prefsBlocking()
         if (!shouldShow(prefs)) return

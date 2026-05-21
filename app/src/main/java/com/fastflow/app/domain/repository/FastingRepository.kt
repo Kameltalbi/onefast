@@ -10,6 +10,9 @@ interface FastingRepository {
     suspend fun pauseFasting(sessionId: Int): Result<FastingSession>
     suspend fun resumeFasting(sessionId: Int): Result<FastingSession>
     suspend fun stopFasting(sessionId: Int): Result<FastingSession>
+    suspend fun openEatingWindow(sessionId: Int): Result<FastingSession>
+    suspend fun completeEatingWindow(sessionId: Int): Result<FastingSession>
+    suspend fun syncSessionPhase(sessionId: Int): Result<FastingSession?>
     suspend fun getCurrentSession(): FastingSession?
     fun observeCurrentSession(): Flow<FastingSession?>
     suspend fun getSessionById(id: Int): FastingSession?

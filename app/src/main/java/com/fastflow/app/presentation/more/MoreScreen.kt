@@ -48,6 +48,18 @@ fun MoreScreen(
             icon = Icons.Default.History
         ),
         MoreMenuEntry(
+            route = "tips",
+            titleRes = R.string.tips_title,
+            subtitleRes = R.string.tips_card_desc,
+            icon = Icons.Default.Lightbulb
+        ),
+        MoreMenuEntry(
+            route = "hydration",
+            titleRes = R.string.hydration_title,
+            subtitleRes = R.string.hydration_card_desc,
+            icon = Icons.Default.WaterDrop
+        ),
+        MoreMenuEntry(
             route = "meal_plan",
             titleRes = R.string.meal_plan_title,
             subtitleRes = R.string.meal_plan_card_desc,

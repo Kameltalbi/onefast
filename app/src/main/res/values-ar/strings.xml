@@ -67,6 +67,15 @@
     <string name="average_fast">متوسط الوقت</string>
     <string name="weight_history">سجل الوزن</string>
     <string name="add_weight">إضافة وزن</string>
+    <string name="weight_prompt_after_fast_title">تأكيد الوزن المُقدَّر</string>
+    <string name="weight_prompt_estimate_summary">بعد %1$.1f ساعة صيام: نحو %2$d سعرة حرارية، أي نحو %3$.2f كغ.</string>
+    <string name="weight_prompt_previous">الوزن السابق</string>
+    <string name="weight_prompt_estimated">الوزن المُقدَّر</string>
+    <string name="weight_value_kg">%.1f كغ</string>
+    <string name="weight_prompt_confirm_hint">عدّل إن لزم، ثم أكّد لحفظ هذه القراءة.</string>
+    <string name="weight_prompt_weigh_in_label">القراءة (كغ)</string>
+    <string name="weight_prompt_confirm">تأكيد</string>
+    <string name="weight_prompt_skip">لاحقاً</string>
     
     <string name="notif_channel_name">إشعارات OneFast</string>
     <string name="notif_channel_desc">إشعارات لتتبع الصيام</string>
@@ -341,4 +350,142 @@
     <string name="minutes">دقائق</string>
     <string name="kg">كغ</string>
     <string name="lbs">رطل</string>
+
+    <!-- Auto-synced missing keys -->
+    <string name="calendar_legend_active">Active</string>
+    <string name="calendar_legend_done">Done</string>
+    <string name="calendar_title">Calendar</string>
+    <string name="change_fasting_plan">Change plan</string>
+    <string name="eating_end_expected">Eating until %1$s</string>
+    <string name="end_eating_window">End eating window</string>
+    <string name="exact_alarm_permission_allow">فتح الإعدادات</string>
+    <string name="exact_alarm_permission_body">لتذكيرك بدقة عند انتهاء الصيام، اسمح بالمنبهات الدقيقة في إعدادات أندرويد.</string>
+    <string name="exact_alarm_permission_later">لاحقاً</string>
+    <string name="exact_alarm_permission_title">منبهات دقيقة</string>
+    <string name="fasting_end_expected">Ends at %1$s</string>
+    <string name="history_day_empty">No fast on this day</string>
+    <string name="history_day_sessions">Fasts on this day</string>
+    <string name="history_duration">Duration: %1$dh %2$dmin</string>
+    <string name="history_empty">No completed fasts yet</string>
+    <string name="history_recent">Recent fasts</string>
+    <string name="hydration_add_glass">+ %1$d ml</string>
+    <string name="hydration_card_desc">Daily glasses, goal and reminders</string>
+    <string name="hydration_edit_goal">Goal: %1$d ml</string>
+    <string name="hydration_entry_format">%1$d ml</string>
+    <string name="hydration_glasses_count">%1$d / %2$d glasses</string>
+    <string name="hydration_goal_dialog_title">Daily goal</string>
+    <string name="hydration_goal_preset">%1$d ml</string>
+    <string name="hydration_goal_reached">Goal reached! Well done</string>
+    <string name="hydration_progress_summary">%1$d / %2$d ml</string>
+    <string name="hydration_remaining">%1$d ml left to drink</string>
+    <string name="hydration_reminders_desc">Reminder every 2 h during fast or eating window</string>
+    <string name="hydration_title">الترطيب</string>
+    <string name="hydration_today_log">Today</string>
+    <string name="longest_streak">Best streak</string>
+    <string name="more_section_features">Features</string>
+    <string name="nav_history">History</string>
+    <string name="nav_more">More</string>
+    <string name="notif_fasting_start_body">Time to start your next fast.</string>
+    <string name="notif_permission_allow">Enable</string>
+    <string name="notif_permission_body">Get alerted when your fast ends and when it\'s time to start again. You can change this in settings.</string>
+    <string name="notif_permission_later">Later</string>
+    <string name="notif_permission_title">Enable reminders?</string>
+    <string name="pricing_billing_error">Could not complete purchase. Try again later.</string>
+    <string name="pricing_billing_not_ready">Google Play is not ready. Try again shortly.</string>
+    <string name="pricing_col_feature">Feature</string>
+    <string name="pricing_col_free">Free</string>
+    <string name="pricing_col_premium">Premium</string>
+    <string name="pricing_col_pro">Pro</string>
+    <string name="pricing_comparison_title">Compare plans</string>
+    <string name="pricing_cta_view_plans">View plans</string>
+    <string name="pricing_current_free">Current plan: Free</string>
+    <string name="pricing_current_plan">Current plan</string>
+    <string name="pricing_current_premium">Current plan: Premium</string>
+    <string name="pricing_current_pro">Current plan: Pro</string>
+    <string name="pricing_hero_subtitle">Free to start. Pro to customize. Premium for health sync and advanced coaching.</string>
+    <string name="pricing_hero_title">Level up your fasting</string>
+    <string name="pricing_history_limited">History limited to last 7 fasts — go Pro for full access.</string>
+    <string name="pricing_legal">Indicative prices. Subscription renews automatically unless cancelled 24h before period end.</string>
+    <string name="pricing_most_popular">Most popular</string>
+    <string name="pricing_or_yearly">or %1$s</string>
+    <string name="pricing_plan_locked">Pro plan required</string>
+    <string name="pricing_plan_premium">Premium</string>
+    <string name="pricing_plan_pro">Pro</string>
+    <string name="pricing_premium_feature_1">Everything in Pro</string>
+    <string name="pricing_premium_feature_2">Health Connect sync</string>
+    <string name="pricing_premium_feature_3">Advanced AI coach and insights</string>
+    <string name="pricing_premium_monthly">€8.99 / month</string>
+    <string name="pricing_premium_savings">Save ~44% with yearly</string>
+    <string name="pricing_premium_yearly">€59.99 / year</string>
+    <string name="pricing_premium_yearly_per_month">That\'s €5.00 / month</string>
+    <string name="pricing_pro_feature_1">All fasting plans + custom</string>
+    <string name="pricing_pro_feature_2">Unlimited history and advanced stats</string>
+    <string name="pricing_pro_feature_3">Lock screen widget and ad-free</string>
+    <string name="pricing_pro_feature_4">Data export</string>
+    <string name="pricing_pro_monthly">€4.99 / month</string>
+    <string name="pricing_pro_savings">Save ~50% with yearly</string>
+    <string name="pricing_pro_yearly">€29.99 / year</string>
+    <string name="pricing_pro_yearly_per_month">That\'s €2.50 / month</string>
+    <string name="pricing_product_unavailable">Plan unavailable. Check products in Play Console.</string>
+    <string name="pricing_profile_card">Subscription</string>
+    <string name="pricing_profile_card_desc">Free · Pro · Premium</string>
+    <string name="pricing_purchase_success">Subscription activated. Thank you!</string>
+    <string name="pricing_restore">استعادة المشتريات</string>
+    <string name="pricing_restore_empty">No active subscription found.</string>
+    <string name="pricing_restore_success">Purchases restored.</string>
+    <string name="pricing_row_16_8">16:8 plan</string>
+    <string name="pricing_row_ads">Ad-free</string>
+    <string name="pricing_row_coach">Advanced AI coach</string>
+    <string name="pricing_row_export">Data export</string>
+    <string name="pricing_row_health">Health sync</string>
+    <string name="pricing_row_history">Unlimited history</string>
+    <string name="pricing_row_plans">Multiple plans</string>
+    <string name="pricing_row_reminders">Smart reminders</string>
+    <string name="pricing_row_stats">Advanced stats</string>
+    <string name="pricing_row_themes">UI themes</string>
+    <string name="pricing_row_timer">Fasting timer</string>
+    <string name="pricing_row_widget">Widget / lock screen</string>
+    <string name="pricing_subscribe">اشترك</string>
+    <string name="pricing_title">OneFast Pro</string>
+    <string name="pricing_trial_note">7-day free trial on Pro or Premium — cancel anytime.</string>
+    <string name="pricing_upgrade_premium">OneFast Premium only</string>
+    <string name="pricing_upgrade_pro">Unlock with OneFast Pro</string>
+    <string name="profile_display_name">Name or nickname</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_email_hint">optional</string>
+    <string name="profile_experience">Fasting experience</string>
+    <string name="profile_main_goal">Main goal</string>
+    <string name="profile_save_error">Could not save profile</string>
+    <string name="profile_saved">Profile saved</string>
+    <string name="profile_section_body">Body metrics</string>
+    <string name="profile_section_goals">Goals</string>
+    <string name="profile_section_personal">Personal information</string>
+    <string name="profile_section_stats">Your journey</string>
+    <string name="profile_stat_fasts">Completed fasts</string>
+    <string name="profile_stat_streak">Current streak</string>
+    <string name="start_fast_with_plan">Start %1$s</string>
+    <string name="stats_avg_duration">Average duration</string>
+    <string name="stats_hours_unit">hours</string>
+    <string name="stats_total_fasts">Completed fasts</string>
+    <string name="stats_total_hours">Total hours</string>
+    <string-array name="tips_bodies">
+<item>Drink water, tea or unsweetened coffee regularly during your fast to reduce hunger and headaches.</item>
+        <item>Start with protein- and fiber-rich foods: vegetables, eggs, fish. Avoid quick sugars to limit blood sugar spikes.</item>
+        <item>Unsweetened coffee and tea are usually fine while fasting. Listen to your body if you are sensitive to caffeine.</item>
+        <item>Hunger often comes in waves. Wait 15–20 minutes, drink water and stay busy — it often passes on its own.</item>
+        <item>Enough sleep makes fasting easier. Avoid very large meals right before bed during your eating window.</item>
+    </string-array>
+    <string name="tips_card_desc">Hydration, breaking fast, coffee…</string>
+    <string name="tips_subtitle">Short guides to fast with confidence.</string>
+    <string name="tips_title">Fasting tips</string>
+    <string-array name="tips_titles">
+<item>Stay hydrated</item>
+        <item>Break your fast gently</item>
+        <item>Coffee and tea</item>
+        <item>Manage hunger</item>
+        <item>Sleep and fasting</item>
+    </string-array>
+    <string name="widget_description">Timer de jeûne OneFast</string>
+    <string name="widget_end_expected">Ends %1$s</string>
+    <string name="widget_status_eating">Eating</string>
 </resources>

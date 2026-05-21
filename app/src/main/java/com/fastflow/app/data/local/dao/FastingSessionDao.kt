@@ -18,10 +18,10 @@ interface FastingSessionDao {
     @Query("SELECT * FROM fasting_sessions WHERE id = :id")
     suspend fun getById(id: Int): FastingSessionEntity?
 
-    @Query("SELECT * FROM fasting_sessions WHERE status IN ('FASTING', 'PAUSED') ORDER BY startTime DESC LIMIT 1")
+    @Query("SELECT * FROM fasting_sessions WHERE status IN ('FASTING', 'PAUSED', 'EATING_WINDOW') ORDER BY startTime DESC LIMIT 1")
     suspend fun getCurrentSession(): FastingSessionEntity?
 
-    @Query("SELECT * FROM fasting_sessions WHERE status IN ('FASTING', 'PAUSED') ORDER BY startTime DESC LIMIT 1")
+    @Query("SELECT * FROM fasting_sessions WHERE status IN ('FASTING', 'PAUSED', 'EATING_WINDOW') ORDER BY startTime DESC LIMIT 1")
     fun observeCurrentSession(): Flow<FastingSessionEntity?>
 
     @Query("SELECT * FROM fasting_sessions ORDER BY startTime DESC")

@@ -30,6 +30,7 @@ import com.fastflow.app.presentation.localization.localizedPlanSummary
 fun SettingsScreen(
     onBack: () -> Unit,
     onOpenNotifications: () -> Unit,
+    onOpenPricing: () -> Unit = {},
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -38,11 +39,13 @@ fun SettingsScreen(
 
     if (showPlanDialog) {
         FastingTypeDialog(
+            subscriptionTier = uiState.subscriptionTier,
             onDismiss = { showPlanDialog = false },
             onSelectType = { type, customHours ->
                 viewModel.setDefaultPlan(type, customHours)
                 showPlanDialog = false
-            }
+            },
+            onUpgradeClick = onOpenPricing
         )
     }
 

@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.fastflow.app.core.locale.AppLocaleManager
 import com.fastflow.app.data.preferences.PreferencesManager
 import com.fastflow.app.domain.model.FastingType
+import com.fastflow.app.domain.model.SubscriptionTier
+import com.fastflow.app.domain.repository.SubscriptionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -16,12 +18,14 @@ data class SettingsUiState(
     val defaultPlan: FastingType? = null,
     val autoStartEnabled: Boolean = false,
     val autoStartHour: Int = 20,
-    val autoStartMinute: Int = 0
+    val autoStartMinute: Int = 0,
+    val subscriptionTier: SubscriptionTier = SubscriptionTier.FREE
 )
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val preferencesManager: PreferencesManager
+    private val preferencesManager: PreferencesManager,
+    subscriptionRepository: SubscriptionRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SettingsUiState())
@@ -39,6 +43,11 @@ class SettingsViewModel @Inject constructor(
             preferencesManager.defaultFastingType.collect { typeName ->
                 val type = typeName?.let { runCatching { FastingType.valueOf(it) }.getOrNull() }
                 _uiState.update { it.copy(defaultPlan = type) }
+            }
+        }
+        viewModelScope.launch {
+            subscriptionRepository.observeTier().collect { tier ->
+                _uiState.update { it.copy(subscriptionTier = tier) }
             }
         }
         viewModelScope.launch {

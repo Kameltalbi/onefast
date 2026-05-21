@@ -3,12 +3,14 @@ package com.fastflow.app.di
 import android.content.Context
 import androidx.room.Room
 import com.fastflow.app.data.local.FastFlowDatabase
+import com.fastflow.app.data.local.FastFlowMigrations
 import com.fastflow.app.data.local.dao.ChatMessageDao
 import com.fastflow.app.data.local.dao.CommunityPostDao
 import com.fastflow.app.data.local.dao.EarnedBadgeDao
 import com.fastflow.app.data.local.dao.MealPlanDao
 import com.fastflow.app.data.local.dao.FastingSessionDao
 import com.fastflow.app.data.local.dao.UserChallengeDao
+import com.fastflow.app.data.local.dao.WaterEntryDao
 import com.fastflow.app.data.local.dao.WeightEntryDao
 import dagger.Module
 import dagger.Provides
@@ -29,6 +31,7 @@ object DatabaseModule {
             FastFlowDatabase::class.java,
             FastFlowDatabase.DATABASE_NAME
         )
+            .addMigrations(FastFlowMigrations.MIGRATION_6_7)
             .fallbackToDestructiveMigration()
             .build()
     }
@@ -73,5 +76,11 @@ object DatabaseModule {
     @Singleton
     fun provideMealPlanDao(database: FastFlowDatabase): MealPlanDao {
         return database.mealPlanDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideWaterEntryDao(database: FastFlowDatabase): WaterEntryDao {
+        return database.waterEntryDao()
     }
 }

@@ -25,7 +25,11 @@ class FastingRepositoryImpl @Inject constructor(
         return try {
             val currentSession = dao.getCurrentSession()
             if (currentSession != null) {
-                return Result.failure(Exception("Une session de jeûne est déjà en cours"))
+                if (currentSession.status == FastingStatus.EATING_WINDOW.name) {
+                    completeEatingWindow(currentSession.id).getOrElse { return Result.failure(it) }
+                } else {
+                    return Result.failure(Exception("Une session de jeûne est déjà en cours"))
+                }
             }
 
             val fastingHours = fastingType.resolveFastingHours(customFastingHours)
@@ -94,6 +98,97 @@ class FastingRepositoryImpl @Inject constructor(
 
             dao.update(updatedSession)
             Result.success(updatedSession.toDomain())
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun openEatingWindow(sessionId: Int): Result<FastingSession> {
+        return try {
+            val session = dao.getById(sessionId)
+                ?: return Result.failure(Exception("Session non trouvée"))
+
+            if (session.status == FastingStatus.EATING_WINDOW.name) {
+                return Result.success(session.toDomain())
+            }
+
+            if (session.status != FastingStatus.FASTING.name &&
+                session.status != FastingStatus.PAUSED.name
+            ) {
+                return Result.failure(Exception("La session n'est pas en phase de jeûne"))
+            }
+
+            val now = System.currentTimeMillis()
+            val totalPaused = if (session.status == FastingStatus.PAUSED.name) {
+                session.pausedAt?.let { now - it + session.totalPausedDuration }
+                    ?: session.totalPausedDuration
+            } else {
+                session.totalPausedDuration
+            }
+
+            val type = FastingType.valueOf(session.fastingType)
+            val customHours = if (type == FastingType.CUSTOM) session.fastingHoursActual else null
+            val fastEndedAt = maxOf(now, session.endTimeExpected)
+            val eatingEnd = fastEndedAt + type.getEatingDurationMillis(customHours)
+
+            val updatedSession = session.copy(
+                status = FastingStatus.EATING_WINDOW.name,
+                endTimeActual = fastEndedAt,
+                endTimeExpected = eatingEnd,
+                pausedAt = null,
+                totalPausedDuration = totalPaused
+            )
+
+            dao.update(updatedSession)
+            Result.success(updatedSession.toDomain())
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun completeEatingWindow(sessionId: Int): Result<FastingSession> {
+        return try {
+            val session = dao.getById(sessionId)
+                ?: return Result.failure(Exception("Session non trouvée"))
+
+            if (session.status != FastingStatus.EATING_WINDOW.name) {
+                return Result.failure(Exception("La session n'est pas en fenêtre alimentaire"))
+            }
+
+            val updatedSession = session.copy(
+                status = FastingStatus.COMPLETED.name
+            )
+
+            dao.update(updatedSession)
+            Result.success(updatedSession.toDomain())
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun syncSessionPhase(sessionId: Int): Result<FastingSession?> {
+        return try {
+            val session = dao.getById(sessionId)?.toDomain()
+                ?: return Result.success(null)
+
+            val now = System.currentTimeMillis()
+            when (session.status) {
+                FastingStatus.FASTING, FastingStatus.PAUSED -> {
+                    if (now >= session.endTimeExpected) {
+                        openEatingWindow(sessionId).map { it }
+                    } else {
+                        Result.success(session)
+                    }
+                }
+                FastingStatus.EATING_WINDOW -> {
+                    if (now >= session.endTimeExpected) {
+                        completeEatingWindow(sessionId).map { it }
+                    } else {
+                        Result.success(session)
+                    }
+                }
+                else -> Result.success(session)
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }

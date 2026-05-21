@@ -30,7 +30,7 @@ class MealPlanRepositoryImpl @Inject constructor(
         mealPlanDao.observeFavorites().map { list -> list.map { it.toDomain() } }
 
     override suspend fun isPremiumUser(): Boolean =
-        preferencesManager.isPremiumUserOnce()
+        preferencesManager.isProUserOnce()
 
     override suspend fun generateMealPlan(
         request: MealPlanRequest,

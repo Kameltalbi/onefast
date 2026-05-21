@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fastflow.app.domain.model.HealthConnectStatus
 import com.fastflow.app.domain.model.HealthSyncSnapshot
+import com.fastflow.app.domain.model.SubscriptionTier
 import com.fastflow.app.domain.repository.HealthSyncRepository
+import com.fastflow.app.domain.repository.SubscriptionRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -12,13 +14,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HealthSyncViewModel @Inject constructor(
-    private val healthSyncRepository: HealthSyncRepository
+    private val healthSyncRepository: HealthSyncRepository,
+    subscriptionRepository: SubscriptionRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HealthSyncUiState())
     val uiState: StateFlow<HealthSyncUiState> = _uiState.asStateFlow()
 
     init {
+        viewModelScope.launch {
+            subscriptionRepository.observeTier().collect { tier ->
+                _uiState.update { it.copy(subscriptionTier = tier) }
+            }
+        }
         viewModelScope.launch {
             healthSyncRepository.observeWriteWeightEnabled().collect { enabled ->
                 _uiState.update { it.copy(writeWeightEnabled = enabled) }
@@ -82,7 +90,8 @@ data class HealthSyncUiState(
     val writeWeightEnabled: Boolean = true,
     val isLoading: Boolean = true,
     val isSyncing: Boolean = false,
-    val error: String? = null
+    val error: String? = null,
+    val subscriptionTier: SubscriptionTier = SubscriptionTier.FREE
 ) {
     val connectStatus: HealthConnectStatus
         get() = snapshot?.status ?: HealthConnectStatus.NOT_SUPPORTED

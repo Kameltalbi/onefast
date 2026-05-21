@@ -11,14 +11,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.fastflow.app.R
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
 import com.fastflow.app.domain.model.FastingType
+import com.fastflow.app.domain.model.SubscriptionCapabilities
+import com.fastflow.app.domain.model.SubscriptionFeature
+import com.fastflow.app.domain.model.SubscriptionTier
 import com.fastflow.app.presentation.localization.localizedName
 import com.fastflow.app.presentation.localization.localizedPlanSummary
 
 @Composable
 fun FastingTypeDialog(
+    subscriptionTier: SubscriptionTier = SubscriptionTier.FREE,
     onDismiss: () -> Unit,
-    onSelectType: (FastingType, Int?) -> Unit
+    onSelectType: (FastingType, Int?) -> Unit,
+    onUpgradeClick: () -> Unit = {}
 ) {
     var showCustomDialog by remember { mutableStateOf(false) }
 
@@ -44,9 +51,22 @@ fun FastingTypeDialog(
                     .verticalScroll(rememberScrollState())
             ) {
                 FastingType.v1Plans.forEach { type ->
+                    val freePlans = setOf(
+                        FastingType.TWELVE_TWELVE,
+                        FastingType.FOURTEEN_TEN,
+                        FastingType.SIXTEEN_EIGHT
+                    )
+                    val locked = !SubscriptionCapabilities.hasAccess(
+                        subscriptionTier,
+                        SubscriptionFeature.MULTIPLE_PLANS
+                    ) && type !in freePlans
+
                     TextButton(
                         onClick = {
-                            if (type == FastingType.CUSTOM) {
+                            if (locked) {
+                                onUpgradeClick()
+                                onDismiss()
+                            } else if (type == FastingType.CUSTOM) {
                                 showCustomDialog = true
                             } else {
                                 onSelectType(type, null)
@@ -55,20 +75,33 @@ fun FastingTypeDialog(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Column(
+                        Row(
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalAlignment = Alignment.Start
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = type.localizedName(),
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = type.localizedPlanSummary(),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                            )
+                            Column(
+                                modifier = Modifier.weight(1f),
+                                horizontalAlignment = Alignment.Start
+                            ) {
+                                Text(
+                                    text = type.localizedName(),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Text(
+                                    text = type.localizedPlanSummary(),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                                )
+                            }
+                            if (locked) {
+                                Icon(
+                                    Icons.Default.Lock,
+                                    contentDescription = stringResource(R.string.pricing_plan_locked),
+                                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.45f)
+                                )
+                            }
                         }
                     }
                     Spacer(modifier = Modifier.height(4.dp))

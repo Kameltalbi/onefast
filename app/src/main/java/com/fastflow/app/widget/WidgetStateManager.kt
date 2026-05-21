@@ -8,6 +8,7 @@ import com.fastflow.app.R
 import com.fastflow.app.domain.model.FastingSession
 import com.fastflow.app.domain.model.FastingStatus
 import com.fastflow.app.presentation.localization.getLabel
+import com.fastflow.app.presentation.util.PhaseEndTimeFormatter
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -26,21 +27,27 @@ class WidgetStateManager @Inject constructor(
             val hours = TimeUnit.MILLISECONDS.toHours(remaining)
             val minutes = TimeUnit.MILLISECONDS.toMinutes(remaining) % 60
             editor.putBoolean(KEY_ACTIVE, true)
-            val statusRes = if (session.status == FastingStatus.FASTING) {
-                R.string.widget_status_fasting
-            } else {
-                R.string.widget_status_paused
+            val statusRes = when (session.status) {
+                FastingStatus.FASTING -> R.string.widget_status_fasting
+                FastingStatus.PAUSED -> R.string.widget_status_paused
+                FastingStatus.EATING_WINDOW -> R.string.widget_status_eating
+                else -> R.string.widget_status_inactive
             }
             editor.putString(KEY_STATUS, context.getString(statusRes))
             editor.putString(KEY_TIME, String.format("%02d:%02d", hours, minutes))
             editor.putInt(KEY_PROGRESS, (session.getProgress() * 100).toInt())
             editor.putString(KEY_PLAN, session.fastingType.getLabel(context))
+            editor.putString(
+                KEY_END_TIME,
+                PhaseEndTimeFormatter.format(session.endTimeExpected)
+            )
         } else {
             editor.putBoolean(KEY_ACTIVE, false)
             editor.putString(KEY_STATUS, context.getString(R.string.widget_status_inactive))
             editor.putString(KEY_TIME, "--:--")
             editor.putInt(KEY_PROGRESS, 0)
             editor.putString(KEY_PLAN, context.getString(R.string.widget_tap_to_start))
+            editor.putString(KEY_END_TIME, "")
         }
         editor.apply()
 
@@ -60,5 +67,6 @@ class WidgetStateManager @Inject constructor(
         const val KEY_TIME = "time"
         const val KEY_PROGRESS = "progress"
         const val KEY_PLAN = "plan"
+        const val KEY_END_TIME = "end_time"
     }
 }

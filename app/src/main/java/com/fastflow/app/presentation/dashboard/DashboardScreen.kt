@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.fastflow.app.R
 import com.fastflow.app.domain.model.FastingStatus
+import com.fastflow.app.presentation.util.PhaseEndTimeFormatter
 import com.fastflow.app.presentation.components.FastingCircle
 import com.fastflow.app.presentation.components.OneFastLogo
 import com.fastflow.app.presentation.components.OneFastLogoVariant
@@ -24,11 +25,11 @@ import com.fastflow.app.presentation.localization.localizedName
 import com.fastflow.app.presentation.components.GiantActionButton
 import com.fastflow.app.presentation.components.MotivationBanner
 import com.fastflow.app.presentation.components.SecondaryActionButton
-import com.fastflow.app.presentation.components.StatsCard
 import java.util.concurrent.TimeUnit
 
 @Composable
 fun DashboardScreen(
+    onOpenPricing: () -> Unit = {},
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -65,18 +66,55 @@ fun DashboardScreen(
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary
             )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            val endTimeLabel = PhaseEndTimeFormatter.format(session.endTimeExpected)
+            Text(
+                text = if (session.status == FastingStatus.EATING_WINDOW) {
+                    stringResource(R.string.eating_end_expected, endTimeLabel)
+                } else {
+                    stringResource(R.string.fasting_end_expected, endTimeLabel)
+                },
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f)
+            )
             Spacer(modifier = Modifier.height(12.dp))
 
             FastingCircle(
                 progress = session.getProgress(),
                 timeElapsed = formatDuration(session.getDuration()),
                 timeRemaining = formatDuration(session.getRemainingTime()),
-                isFasting = session.status == FastingStatus.FASTING
+                isFasting = session.isFastingPhase()
             )
 
             Spacer(modifier = Modifier.height(32.dp))
 
             when (session.status) {
+                FastingStatus.EATING_WINDOW -> {
+                    GiantActionButton(
+                        icon = Icons.Default.PlayArrow,
+                        text = uiState.defaultPlan?.let { plan ->
+                            stringResource(R.string.start_fast_with_plan, plan.localizedName())
+                        } ?: stringResource(R.string.start_fast),
+                        onClick = {
+                            if (uiState.defaultPlan != null) {
+                                viewModel.startFastingWithDefaultPlan()
+                            } else {
+                                showFastingTypeDialog = true
+                            }
+                        },
+                        isPulsing = true
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    SecondaryActionButton(
+                        icon = Icons.Default.Stop,
+                        text = stringResource(R.string.end_eating_window),
+                        onClick = { viewModel.endEatingWindow() },
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.fillMaxWidth(0.75f)
+                    )
+                }
                 FastingStatus.FASTING -> {
                     GiantActionButton(
                         icon = Icons.Default.Pause,
@@ -129,42 +167,50 @@ fun DashboardScreen(
                 )
             }
             Spacer(modifier = Modifier.height(40.dp))
-            GiantActionButton(
-                icon = Icons.Default.PlayArrow,
-                text = stringResource(R.string.start_fast),
-                onClick = { showFastingTypeDialog = true },
-                isPulsing = true
-            )
+            val defaultPlan = uiState.defaultPlan
+            if (defaultPlan != null) {
+                GiantActionButton(
+                    icon = Icons.Default.PlayArrow,
+                    text = stringResource(
+                        R.string.start_fast_with_plan,
+                        defaultPlan.localizedName()
+                    ),
+                    onClick = { viewModel.startFastingWithDefaultPlan() },
+                    isPulsing = true
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                TextButton(onClick = { showFastingTypeDialog = true }) {
+                    Text(stringResource(R.string.change_fasting_plan))
+                }
+            } else {
+                GiantActionButton(
+                    icon = Icons.Default.PlayArrow,
+                    text = stringResource(R.string.start_fast),
+                    onClick = { showFastingTypeDialog = true },
+                    isPulsing = true
+                )
+            }
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            StatsCard(
-                title = stringResource(R.string.current_streak),
-                value = "${uiState.userStats.currentStreak}",
-                subtitle = stringResource(R.string.days_unit),
-                modifier = Modifier.weight(1f)
-            )
-            StatsCard(
-                title = stringResource(R.string.current_weight),
-                value = uiState.userStats.currentWeight?.let { String.format("%.1f", it) } ?: "—",
-                subtitle = stringResource(R.string.kg),
-                modifier = Modifier.weight(1f)
-            )
-        }
     }
 
     if (showFastingTypeDialog) {
         FastingTypeDialog(
+            subscriptionTier = uiState.subscriptionTier,
             onDismiss = { showFastingTypeDialog = false },
             onSelectType = { type, customHours ->
                 viewModel.startFasting(type, customHours)
                 showFastingTypeDialog = false
-            }
+            },
+            onUpgradeClick = onOpenPricing
+        )
+    }
+
+    uiState.weightEstimateAfterFast?.let { estimate ->
+        FastingWeightConfirmDialog(
+            estimate = estimate,
+            onDismiss = { viewModel.dismissWeightPromptAfterFast() },
+            onConfirm = { viewModel.confirmWeightAfterFast(it) }
         )
     }
 

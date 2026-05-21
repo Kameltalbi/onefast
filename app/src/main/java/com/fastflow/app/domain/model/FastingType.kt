@@ -48,8 +48,11 @@ enum class FastingType(
 
         /** Plans proposés dans la V1 produit */
         val v1Plans: List<FastingType> = listOf(
+            TWELVE_TWELVE,
+            FOURTEEN_TEN,
             SIXTEEN_EIGHT,
             EIGHTEEN_SIX,
+            TWENTY_FOUR,
             OMAD,
             CUSTOM
         )

@@ -26,7 +26,9 @@
     <string name="widget_description">Timer de jeûne OneFast</string>
     <string name="widget_status_fasting">Jeûne</string>
     <string name="widget_status_paused">Pause</string>
+    <string name="widget_status_eating">Repas</string>
     <string name="widget_status_inactive">Inactif</string>
+    <string name="widget_end_expected">Fin %1$s</string>
     <string name="widget_tap_to_start">Appuyez pour démarrer</string>
 
     <!-- Langue -->
@@ -40,6 +42,11 @@
     <string name="fasting_status_eating">Fenêtre repas</string>
     <string name="fasting_elapsed">Écoulé : %1$s</string>
     <string name="fasting_remaining">Restant : %1$s</string>
+    <string name="fasting_end_expected">Fin prévue à %1$s</string>
+    <string name="eating_end_expected">Repas jusqu\'à %1$s</string>
+    <string name="start_fast_with_plan">Démarrer %1$s</string>
+    <string name="change_fasting_plan">Changer de plan</string>
+    <string name="end_eating_window">Terminer la fenêtre repas</string>
 
     <!-- Motivation -->
     <string name="motivation_paused">Prenez une pause, puis reprenez quand vous êtes prêt.</string>
@@ -72,9 +79,54 @@
     <string name="current_weight">Poids actuel</string>
     <string name="total_fasts">Jeûnes terminés</string>
     <string name="current_streak">Série actuelle</string>
+    <string name="longest_streak">Meilleure série</string>
+    <string name="stats_total_fasts">Jeûnes terminés</string>
+    <string name="stats_total_hours">Heures totales</string>
+    <string name="stats_avg_duration">Durée moyenne</string>
+    <string name="stats_hours_unit">heures</string>
+    <string name="calendar_title">Calendrier</string>
+    <string name="calendar_legend_done">Réussi</string>
+    <string name="calendar_legend_active">En cours</string>
+    <string name="history_recent">Jeûnes récents</string>
+    <string name="history_day_sessions">Jeûnes ce jour</string>
+    <string name="history_day_empty">Aucun jeûne ce jour-là</string>
+    <string name="tips_title">Conseils jeûne</string>
+    <string name="tips_subtitle">Guides courts pour jeûner sereinement.</string>
+    <string name="tips_card_desc">Hydratation, casser le jeûne, café…</string>
+    <string name="notif_permission_title">Activer les rappels ?</string>
+    <string name="notif_permission_body">Recevez une alerte à la fin du jeûne et au moment de recommencer. Vous pourrez modifier cela dans les réglages.</string>
+    <string name="notif_permission_allow">Activer</string>
+    <string name="notif_permission_later">Plus tard</string>
+    <string name="exact_alarm_permission_title">Alarmes précises</string>
+    <string name="exact_alarm_permission_body">Pour vous rappeler à l\'heure exacte la fin du jeûne, autorisez les alarmes précises dans les réglages Android.</string>
+    <string name="exact_alarm_permission_allow">Ouvrir les réglages</string>
+    <string name="exact_alarm_permission_later">Plus tard</string>
+    <string-array name="tips_titles">
+        <item>Bien s\'hydrater</item>
+        <item>Casser le jeûne en douceur</item>
+        <item>Café et thé</item>
+        <item>Gérer la faim</item>
+        <item>Sommeil et jeûne</item>
+    </string-array>
+    <string-array name="tips_bodies">
+        <item>Buvez régulièrement de l\'eau, du thé ou du café sans sucre pendant le jeûne. Cela aide à limiter la faim et les maux de tête.</item>
+        <item>Commencez par des aliments riches en protéines et en fibres : légumes, œufs, poisson. Évitez les sucres rapides pour limiter le pic glycémique.</item>
+        <item>Le café et le thé non sucrés sont en général compatibles avec le jeûne. Écoutez votre corps si vous êtes sensible à la caféine.</item>
+        <item>La faim arrive souvent par vagues. Attendez 15–20 minutes, buvez un verre d\'eau et occupez-vous. Elle passe souvent d\'elle-même.</item>
+        <item>Un sommeil suffisant facilite le jeûne. Évitez les grands repas juste avant de dormir pendant la fenêtre alimentaire.</item>
+    </string-array>
     <string name="average_fast">Temps moyen</string>
     <string name="weight_history">Historique du poids</string>
     <string name="add_weight">Ajouter poids</string>
+    <string name="weight_prompt_after_fast_title">Confirmer votre pesée estimée</string>
+    <string name="weight_prompt_estimate_summary">Après %1$.1f h de jeûne : environ %2$d kcal dépensées, soit environ %3$.2f kg.</string>
+    <string name="weight_prompt_previous">Poids avant</string>
+    <string name="weight_prompt_estimated">Pesée estimée</string>
+    <string name="weight_value_kg">%.1f kg</string>
+    <string name="weight_prompt_confirm_hint">Ajustez si besoin, puis confirmez pour enregistrer cette pesée.</string>
+    <string name="weight_prompt_weigh_in_label">Pesée (kg)</string>
+    <string name="weight_prompt_confirm">Confirmer</string>
+    <string name="weight_prompt_skip">Plus tard</string>
     
     <!-- Notifications -->
     <string name="notif_channel_name">Notifications OneFast</string>
@@ -94,6 +146,22 @@
     <string name="notif_streak_title">Bravo !</string>
     <string name="notif_streak_body">%1$d jours consécutifs de jeûne. Continuez ainsi !</string>
     <string name="notif_eating_window_body">Votre fenêtre alimentaire est ouverte.</string>
+    <string name="notif_fasting_start_body">Il est temps de démarrer votre prochain jeûne.</string>
+
+    <!-- Hydratation -->
+    <string name="hydration_title">Hydratation</string>
+    <string name="hydration_card_desc">Verres du jour, objectif et rappels</string>
+    <string name="hydration_add_glass">+ %1$d ml</string>
+    <string name="hydration_edit_goal">Objectif : %1$d ml</string>
+    <string name="hydration_reminders_desc">Rappel toutes les 2 h pendant le jeûne ou la fenêtre repas</string>
+    <string name="hydration_today_log">Aujourd\'hui</string>
+    <string name="hydration_progress_summary">%1$d / %2$d ml</string>
+    <string name="hydration_glasses_count">%1$d / %2$d verres</string>
+    <string name="hydration_remaining">Encore %1$d ml à boire</string>
+    <string name="hydration_goal_reached">Objectif atteint ! Bravo</string>
+    <string name="hydration_entry_format">%1$d ml</string>
+    <string name="hydration_goal_dialog_title">Objectif quotidien</string>
+    <string name="hydration_goal_preset">%1$d ml</string>
     <string name="notif_settings_desc">Choisissez les rappels que vous souhaitez recevoir.</string>
     <string name="notif_toggle_all">Activer les notifications</string>
     <string name="notif_toggle_hydration">Rappels hydratation</string>
@@ -378,4 +446,66 @@
     <string name="onboarding_difficulty_moderate">Modérée</string>
     <string name="onboarding_difficulty_challenging">Exigeant</string>
     <string name="onboarding_start_journey">Démarrer mon parcours</string>
+
+    <!-- Abonnements / Pricing -->
+    <string name="pricing_title">OneFast Pro</string>
+    <string name="pricing_hero_title">Passez au niveau supérieur</string>
+    <string name="pricing_hero_subtitle">Free pour démarrer. Pro pour personnaliser. Premium pour la santé connectée et le coaching avancé.</string>
+    <string name="pricing_most_popular">Le plus populaire</string>
+    <string name="pricing_plan_pro">Pro</string>
+    <string name="pricing_plan_premium">Premium</string>
+    <string name="pricing_pro_monthly">4,99 € / mois</string>
+    <string name="pricing_pro_yearly">29,99 € / an</string>
+    <string name="pricing_pro_yearly_per_month">Soit 2,50 € / mois</string>
+    <string name="pricing_pro_savings">Économisez ~50 % avec l\'annuel</string>
+    <string name="pricing_premium_monthly">8,99 € / mois</string>
+    <string name="pricing_premium_yearly">59,99 € / an</string>
+    <string name="pricing_premium_yearly_per_month">Soit 5,00 € / mois</string>
+    <string name="pricing_premium_savings">Économisez ~44 % avec l\'annuel</string>
+    <string name="pricing_or_yearly">ou %1$s</string>
+    <string name="pricing_pro_feature_1">Tous les plans de jeûne + personnalisé</string>
+    <string name="pricing_pro_feature_2">Historique illimité et statistiques avancées</string>
+    <string name="pricing_pro_feature_3">Widget écran verrouillé et sans publicité</string>
+    <string name="pricing_pro_feature_4">Export des données</string>
+    <string name="pricing_premium_feature_1">Tout OneFast Pro inclus</string>
+    <string name="pricing_premium_feature_2">Synchronisation Health Connect</string>
+    <string name="pricing_premium_feature_3">Coach IA avancé et insights</string>
+    <string name="pricing_trial_note">Essai gratuit 7 jours sur Pro ou Premium — annulable à tout moment.</string>
+    <string name="pricing_subscribe">S\'abonner</string>
+    <string name="pricing_current_plan">Plan actuel</string>
+    <string name="pricing_current_free">Plan actuel : Free</string>
+    <string name="pricing_current_pro">Plan actuel : Pro</string>
+    <string name="pricing_current_premium">Plan actuel : Premium</string>
+    <string name="pricing_restore">Restaurer les achats</string>
+    <string name="pricing_purchase_success">Abonnement activé. Merci !</string>
+    <string name="pricing_restore_success">Achats restaurés.</string>
+    <string name="pricing_restore_empty">Aucun abonnement actif trouvé.</string>
+    <string name="pricing_billing_not_ready">Google Play n\'est pas prêt. Réessayez dans un instant.</string>
+    <string name="pricing_product_unavailable">Offre indisponible. Vérifiez les produits dans la Play Console.</string>
+    <string name="pricing_billing_error">Impossible de finaliser l\'achat. Réessayez plus tard.</string>
+    <string name="pricing_legal">Prix indicatifs. L\'abonnement se renouvelle automatiquement sauf annulation 24 h avant la fin de la période.</string>
+    <string name="pricing_comparison_title">Comparer les offres</string>
+    <string name="pricing_col_feature">Fonctionnalité</string>
+    <string name="pricing_col_free">Free</string>
+    <string name="pricing_col_pro">Pro</string>
+    <string name="pricing_col_premium">Premium</string>
+    <string name="pricing_row_timer">Timer de jeûne</string>
+    <string name="pricing_row_16_8">Plan 16:8</string>
+    <string name="pricing_row_plans">Plans multiples</string>
+    <string name="pricing_row_history">Historique illimité</string>
+    <string name="pricing_row_stats">Statistiques avancées</string>
+    <string name="pricing_row_widget">Widget / écran verrouillé</string>
+    <string name="pricing_row_reminders">Rappels intelligents</string>
+    <string name="pricing_row_export">Export des données</string>
+    <string name="pricing_row_health">Sync santé</string>
+    <string name="pricing_row_coach">Coach IA avancé</string>
+    <string name="pricing_row_themes">Thèmes UI</string>
+    <string name="pricing_row_ads">Sans publicité</string>
+    <string name="pricing_cta_view_plans">Voir les offres</string>
+    <string name="pricing_upgrade_pro">Débloquez avec OneFast Pro</string>
+    <string name="pricing_upgrade_premium">Réservé à OneFast Premium</string>
+    <string name="pricing_profile_card">Abonnement</string>
+    <string name="pricing_profile_card_desc">Free · Pro · Premium</string>
+    <string name="pricing_plan_locked">Plan Pro requis</string>
+    <string name="pricing_history_limited">Historique limité (7 derniers jeûnes) — passez Pro pour tout voir.</string>
 </resources>

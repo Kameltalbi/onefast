@@ -1,6 +1,5 @@
 package com.fastflow.app.presentation
 
-import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -23,6 +22,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -48,10 +48,21 @@ import com.fastflow.app.presentation.settings.SettingsScreen
 import com.fastflow.app.presentation.ramadan.RamadanScreen
 import com.fastflow.app.presentation.settings.NotificationSettingsScreen
 import com.fastflow.app.presentation.theme.FastFlowTheme
+import com.fastflow.app.presentation.tips.TipsScreen
+import com.fastflow.app.presentation.hydration.HydrationScreen
+import com.fastflow.app.presentation.pricing.PricingScreen
 import com.fastflow.app.presentation.weight.WeightScreen
+import com.fastflow.app.presentation.components.ExactAlarmPermissionDialog
+import com.fastflow.app.presentation.components.NotificationPermissionDialog
+import com.fastflow.app.presentation.components.POST_NOTIFICATIONS_PERMISSION
+import android.app.AlarmManager
+import android.content.Intent
+import android.provider.Settings
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import androidx.compose.runtime.rememberCoroutineScope
 import javax.inject.Inject
 
 private val bottomNavRoutes = setOf("home", "progress", "coach", "more", "profile")
@@ -86,8 +97,11 @@ class MainActivity : AppCompatActivity() {
             LocalizedApp(languageTag = languageTag) {
                 FastFlowTheme {
                     when (isOnboardingCompleted) {
-                        true -> MainScreen()
-                        false -> OnboardingFlow()
+                        true -> MainScreen(
+                            preferencesManager = preferencesManager,
+                            promptNotifications = false
+                        )
+                        false -> OnboardingFlow(preferencesManager = preferencesManager)
                         null -> {
                             Box(
                                 modifier = Modifier.fillMaxSize(),
@@ -108,12 +122,15 @@ class MainActivity : AppCompatActivity() {
 }
 
 @Composable
-fun OnboardingFlow() {
+fun OnboardingFlow(preferencesManager: PreferencesManager) {
     var showMainScreen by remember { mutableStateOf(false) }
 
     if (showMainScreen) {
         FastFlowTheme {
-            MainScreen()
+            MainScreen(
+                preferencesManager = preferencesManager,
+                promptNotifications = true
+            )
         }
     } else {
         FastFlowTheme(darkTheme = true) {
@@ -126,19 +143,80 @@ fun OnboardingFlow() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    preferencesManager: PreferencesManager,
+    promptNotifications: Boolean
+) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val openPricing: () -> Unit = {
+        navController.navigate("pricing") { launchSingleTop = true }
+    }
+
+    var showNotificationDialog by remember { mutableStateOf(false) }
+    var showExactAlarmDialog by remember { mutableStateOf(false) }
+    val alarmManager = remember { context.getSystemService(AlarmManager::class.java) }
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) { }
+    ) {
+        scope.launch { preferencesManager.setNotificationPermissionAsked(true) }
+    }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(promptNotifications) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            val alreadyAsked = preferencesManager.getNotificationPermissionAskedOnce()
+            if (promptNotifications || !alreadyAsked) {
+                showNotificationDialog = true
+            }
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val exactAlarmAsked = preferencesManager.getExactAlarmPermissionAskedOnce()
+            val canSchedule = alarmManager?.canScheduleExactAlarms() == true
+            if (!exactAlarmAsked && !canSchedule) {
+                showExactAlarmDialog = true
+            }
+        }
+    }
+
+    if (showNotificationDialog) {
+        NotificationPermissionDialog(
+            onConfirm = {
+                showNotificationDialog = false
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    permissionLauncher.launch(POST_NOTIFICATIONS_PERMISSION)
+                } else {
+                    scope.launch { preferencesManager.setNotificationPermissionAsked(true) }
+                }
+            },
+            onDismiss = {
+                showNotificationDialog = false
+                scope.launch { preferencesManager.setNotificationPermissionAsked(true) }
+            }
+        )
+    }
+
+    if (showExactAlarmDialog) {
+        ExactAlarmPermissionDialog(
+            onConfirm = {
+                showExactAlarmDialog = false
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    context.startActivity(
+                        Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
+                            data = android.net.Uri.parse("package:${context.packageName}")
+                        }
+                    )
+                }
+                scope.launch { preferencesManager.setExactAlarmPermissionAsked(true) }
+            },
+            onDismiss = {
+                showExactAlarmDialog = false
+                scope.launch { preferencesManager.setExactAlarmPermissionAsked(true) }
+            }
+        )
     }
 
     Scaffold(
@@ -204,7 +282,7 @@ fun MainScreen() {
             startDestination = "home",
             modifier = Modifier.padding(paddingValues)
         ) {
-            composable("home") { DashboardScreen() }
+            composable("home") { DashboardScreen(onOpenPricing = openPricing) }
             composable("progress") { WeightScreen() }
             composable("coach") { CoachScreen() }
             composable("more") {
@@ -214,13 +292,15 @@ fun MainScreen() {
             }
             composable("profile") {
                 ProfileScreen(
-                    onOpenSettings = { navController.navigate("settings") }
+                    onOpenSettings = { navController.navigate("settings") },
+                    onOpenPricing = openPricing
                 )
             }
             composable("settings") {
                 SettingsScreen(
                     onBack = { navController.popBackStack() },
-                    onOpenNotifications = { navController.navigate("notifications") }
+                    onOpenNotifications = { navController.navigate("notifications") },
+                    onOpenPricing = openPricing
                 )
             }
             composable("notifications") {
@@ -233,16 +313,31 @@ fun MainScreen() {
                 CommunityScreen(onBack = { navController.popBackStack() })
             }
             composable("history") {
-                FastingHistoryScreen(onBack = { navController.popBackStack() })
+                FastingHistoryScreen(
+                    onBack = { navController.popBackStack() },
+                    onOpenPricing = openPricing
+                )
             }
             composable("meal_plan") {
                 MealPlanScreen(onBack = { navController.popBackStack() })
             }
             composable("health_sync") {
-                HealthSyncScreen(onBack = { navController.popBackStack() })
+                HealthSyncScreen(
+                    onBack = { navController.popBackStack() },
+                    onOpenPricing = openPricing
+                )
             }
             composable("ramadan") {
                 RamadanScreen(onBack = { navController.popBackStack() })
+            }
+            composable("tips") {
+                TipsScreen(onBack = { navController.popBackStack() })
+            }
+            composable("hydration") {
+                HydrationScreen(onBack = { navController.popBackStack() })
+            }
+            composable("pricing") {
+                PricingScreen(onBack = { navController.popBackStack() })
             }
         }
     }

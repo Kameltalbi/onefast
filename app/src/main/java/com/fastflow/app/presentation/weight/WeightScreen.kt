@@ -140,22 +140,35 @@ fun WeightScreen(
 @Composable
 fun AddWeightDialog(
     onDismiss: () -> Unit,
-    onConfirm: (Float, Float?) -> Unit
+    onConfirm: (Float, Float?) -> Unit,
+    initialWeightKg: Float? = null,
+    titleRes: Int = R.string.add_weight,
+    messageRes: Int? = null
 ) {
-    var weightText by remember { mutableStateOf("") }
+    var weightText by remember(initialWeightKg) {
+        mutableStateOf(initialWeightKg?.let { String.format("%.1f", it) } ?: "")
+    }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.add_weight)) },
+        title = { Text(stringResource(titleRes)) },
         text = {
-            OutlinedTextField(
-                value = weightText,
-                onValueChange = { weightText = it },
-                label = { Text(stringResource(R.string.kg)) },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth()
-            )
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                messageRes?.let { res ->
+                    Text(
+                        text = stringResource(res),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+                OutlinedTextField(
+                    value = weightText,
+                    onValueChange = { weightText = it },
+                    label = { Text(stringResource(R.string.kg)) },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         },
         confirmButton = {
             TextButton(

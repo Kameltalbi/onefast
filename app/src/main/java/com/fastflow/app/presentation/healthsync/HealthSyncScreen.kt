@@ -27,12 +27,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.fastflow.app.R
 import com.fastflow.app.domain.model.HealthConnectStatus
 import com.fastflow.app.domain.model.HealthSyncSnapshot
+import com.fastflow.app.domain.model.SubscriptionCapabilities
+import com.fastflow.app.domain.model.SubscriptionFeature
 import com.fastflow.app.presentation.components.HealthMetricTile
+import com.fastflow.app.presentation.components.UpgradeBanner
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HealthSyncScreen(
     onBack: () -> Unit,
+    onOpenPricing: () -> Unit = {},
     viewModel: HealthSyncViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -72,7 +76,16 @@ fun HealthSyncScreen(
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
 
-            when (uiState.connectStatus) {
+            if (!SubscriptionCapabilities.hasAccess(
+                    uiState.subscriptionTier,
+                    SubscriptionFeature.HEALTH_SYNC
+                )
+            ) {
+                UpgradeBanner(
+                    message = stringResource(R.string.pricing_upgrade_premium),
+                    onUpgradeClick = onOpenPricing
+                )
+            } else when (uiState.connectStatus) {
                 HealthConnectStatus.NOT_INSTALLED -> StatusCard(
                     title = stringResource(R.string.health_sync_not_installed),
                     actionLabel = stringResource(R.string.health_sync_install),
