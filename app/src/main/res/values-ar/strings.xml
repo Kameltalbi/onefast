@@ -129,7 +129,6 @@
     <string name="profile_notifications_desc">البدء والانتهاء والتحفيز</string>
     <string name="profile_section_plan">الصيام</string>
     <string name="profile_default_plan">الخطة الافتراضية</string>
-    <string name="profile_v1_note">مزيد من الميزات قريباً.</string>
     <string name="notif_v1_desc">إشعارات أساسية لصيامك.</string>
     <string name="notif_v1_start_end_hint">تنبيهات البدء والانتهاء مُضمّنة عند تفعيل الإشعارات.</string>
     <string name="notif_v1_motivation_desc">إنجازات عند 3 و7 و14 و30 يوماً</string>

@@ -129,7 +129,6 @@
     <string name="profile_notifications_desc">Inicio, fin y motivación</string>
     <string name="profile_section_plan">Ayuno</string>
     <string name="profile_default_plan">Plan predeterminado</string>
-    <string name="profile_v1_note">Próximamente más funciones.</string>
     <string name="notif_v1_desc">Notificaciones esenciales para tu ayuno.</string>
     <string name="notif_v1_start_end_hint">Las alertas de inicio y fin se incluyen cuando las notificaciones están activadas.</string>
     <string name="notif_v1_motivation_desc">Hitos a los 3, 7, 14 y 30 días</string>

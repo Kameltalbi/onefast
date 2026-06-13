@@ -129,7 +129,6 @@
     <string name="profile_notifications_desc">Início, fim e motivação</string>
     <string name="profile_section_plan">Jejum</string>
     <string name="profile_default_plan">Plano padrão</string>
-    <string name="profile_v1_note">Mais recursos em breve.</string>
     <string name="notif_v1_desc">Notificações essenciais para seu jejum.</string>
     <string name="notif_v1_start_end_hint">Alertas de início e fim estão incluídos quando as notificações estão ativas.</string>
     <string name="notif_v1_motivation_desc">Marcos aos 3, 7, 14 e 30 dias</string>

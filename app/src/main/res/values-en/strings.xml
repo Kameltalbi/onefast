@@ -204,7 +204,6 @@
     <string name="settings_section_fasting">Fasting</string>
     <string name="settings_change_plan">Change plan</string>
     <string name="profile_default_plan">Default plan</string>
-    <string name="profile_v1_note">More features coming soon.</string>
     <string name="notif_v1_desc">Essential notifications for your fast.</string>
     <string name="notif_v1_start_end_hint">Start and end alerts are included when notifications are on.</string>
     <string name="notif_v1_motivation_desc">Milestones at 3, 7, 14 and 30 days</string>
@@ -275,7 +274,6 @@
     <string name="pricing_current_pro">Current plan: Pro</string>
     <string name="pricing_current_premium">Current plan: Premium</string>
     <string name="pricing_restore">Restore purchases</string>
-    <string name="pricing_billing_soon">Google Play subscription coming soon.</string>
     <string name="exact_alarm_permission_title">Exact alarms</string>
     <string name="exact_alarm_permission_body">To remind you exactly when your fast ends, allow exact alarms in Android settings.</string>
     <string name="exact_alarm_permission_allow">Open settings</string>

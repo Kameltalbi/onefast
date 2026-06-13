@@ -129,7 +129,6 @@
     <string name="profile_notifications_desc">Start, Ende und Motivation</string>
     <string name="profile_section_plan">Fasten</string>
     <string name="profile_default_plan">Standardplan</string>
-    <string name="profile_v1_note">Weitere Funktionen kommen bald.</string>
     <string name="notif_v1_desc">Wichtige Benachrichtigungen für dein Fasten.</string>
     <string name="notif_v1_start_end_hint">Start- und End-Hinweise sind bei aktivierten Benachrichtigungen enthalten.</string>
     <string name="notif_v1_motivation_desc">Meilensteine bei 3, 7, 14 und 30 Tagen</string>
