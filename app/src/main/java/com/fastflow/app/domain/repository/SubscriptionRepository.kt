@@ -9,9 +9,7 @@ interface SubscriptionRepository {
     suspend fun getTierOnce(): SubscriptionTier
     suspend fun setTier(tier: SubscriptionTier)
     suspend fun isProOrAbove(): Boolean
-    suspend fun isPremium(): Boolean
     fun startBillingConnection()
     suspend fun purchaseProYearly(activity: Activity): Result<Unit>
-    suspend fun purchasePremiumYearly(activity: Activity): Result<Unit>
     suspend fun restorePurchases(): Result<SubscriptionTier>
 }

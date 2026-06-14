@@ -34,10 +34,6 @@ class PricingViewModel @Inject constructor(
         purchase(activity) { subscriptionRepository.purchaseProYearly(activity) }
     }
 
-    fun onSubscribePremium(activity: Activity) {
-        purchase(activity) { subscriptionRepository.purchasePremiumYearly(activity) }
-    }
-
     fun onRestorePurchases() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }

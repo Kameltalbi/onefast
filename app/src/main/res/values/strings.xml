@@ -450,7 +450,7 @@
     <!-- Abonnements / Pricing -->
     <string name="pricing_title">OneFast Pro</string>
     <string name="pricing_hero_title">Passez au niveau supérieur</string>
-    <string name="pricing_hero_subtitle">Free pour démarrer. Pro pour personnaliser. Premium pour la santé connectée et le coaching avancé.</string>
+    <string name="pricing_hero_subtitle">Free pour commencer. Pro pour tout débloquer.</string>
     <string name="pricing_most_popular">Le plus populaire</string>
     <string name="pricing_plan_pro">Pro</string>
     <string name="pricing_plan_premium">Premium</string>
@@ -465,11 +465,10 @@
     <string name="pricing_or_yearly">ou %1$s</string>
     <string name="pricing_pro_feature_1">Tous les plans de jeûne + personnalisé</string>
     <string name="pricing_pro_feature_2">Historique illimité et statistiques avancées</string>
-    <string name="pricing_pro_feature_3">Widget écran verrouillé et sans publicité</string>
-    <string name="pricing_pro_feature_4">Export des données</string>
-    <string name="pricing_premium_feature_1">Tout OneFast Pro inclus</string>
-    <string name="pricing_premium_feature_2">Synchronisation Health Connect</string>
-    <string name="pricing_premium_feature_3">Coach IA avancé et insights</string>
+    <string name="pricing_pro_feature_3">Widget et écran de verrouillage</string>
+    <string name="pricing_pro_feature_4">Synchronisation Health Connect</string>
+    <string name="pricing_pro_feature_5">Coach IA avancé</string>
+    <string name="pricing_pro_feature_6">Export des données · Sans publicité</string>
     <string name="pricing_trial_note">Essai gratuit 7 jours sur Pro ou Premium — annulable à tout moment.</string>
     <string name="pricing_subscribe">S\'abonner</string>
     <string name="pricing_current_plan">Plan actuel</string>

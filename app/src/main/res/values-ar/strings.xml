@@ -410,9 +410,6 @@
     <string name="pricing_plan_locked">Pro plan required</string>
     <string name="pricing_plan_premium">Premium</string>
     <string name="pricing_plan_pro">Pro</string>
-    <string name="pricing_premium_feature_1">Everything in Pro</string>
-    <string name="pricing_premium_feature_2">Health Connect sync</string>
-    <string name="pricing_premium_feature_3">Advanced AI coach and insights</string>
     <string name="pricing_premium_monthly">€8.99 / month</string>
     <string name="pricing_premium_savings">Save ~44% with yearly</string>
     <string name="pricing_premium_yearly">€59.99 / year</string>

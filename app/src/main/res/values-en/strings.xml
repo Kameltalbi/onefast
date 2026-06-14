@@ -264,9 +264,6 @@
     <string name="pricing_pro_feature_2">Unlimited history and advanced stats</string>
     <string name="pricing_pro_feature_3">Lock screen widget and ad-free</string>
     <string name="pricing_pro_feature_4">Data export</string>
-    <string name="pricing_premium_feature_1">Everything in Pro</string>
-    <string name="pricing_premium_feature_2">Health Connect sync</string>
-    <string name="pricing_premium_feature_3">Advanced AI coach and insights</string>
     <string name="pricing_trial_note">7-day free trial on Pro or Premium — cancel anytime.</string>
     <string name="pricing_subscribe">Subscribe</string>
     <string name="pricing_current_plan">Current plan</string>

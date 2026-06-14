@@ -24,7 +24,6 @@ import android.app.Activity
 import com.fastflow.app.R
 import com.fastflow.app.domain.model.SubscriptionTier
 import com.fastflow.app.presentation.theme.AccentBlue
-import com.fastflow.app.presentation.theme.AccentOrange
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -114,32 +113,15 @@ fun PricingScreen(
                     stringResource(R.string.pricing_pro_feature_1),
                     stringResource(R.string.pricing_pro_feature_2),
                     stringResource(R.string.pricing_pro_feature_3),
-                    stringResource(R.string.pricing_pro_feature_4)
+                    stringResource(R.string.pricing_pro_feature_4),
+                    stringResource(R.string.pricing_pro_feature_5),
+                    stringResource(R.string.pricing_pro_feature_6)
                 ),
                 accentColor = AccentBlue,
                 isHighlighted = true,
                 isCurrent = uiState.currentTier == SubscriptionTier.PRO,
                 isLoading = uiState.isLoading,
                 onSubscribe = { viewModel.onSubscribePro(activity) }
-            )
-
-            PlanCard(
-                title = stringResource(R.string.pricing_plan_premium),
-                badge = null,
-                monthlyPrice = stringResource(R.string.pricing_premium_monthly),
-                yearlyPrice = stringResource(R.string.pricing_premium_yearly),
-                yearlyPerMonth = stringResource(R.string.pricing_premium_yearly_per_month),
-                savings = stringResource(R.string.pricing_premium_savings),
-                features = listOf(
-                    stringResource(R.string.pricing_premium_feature_1),
-                    stringResource(R.string.pricing_premium_feature_2),
-                    stringResource(R.string.pricing_premium_feature_3)
-                ),
-                accentColor = AccentOrange,
-                isHighlighted = false,
-                isCurrent = uiState.currentTier == SubscriptionTier.PREMIUM,
-                isLoading = uiState.isLoading,
-                onSubscribe = { viewModel.onSubscribePremium(activity) }
             )
 
             Text(
@@ -180,7 +162,6 @@ private fun CurrentPlanBadge(tier: SubscriptionTier) {
     val label = when (tier) {
         SubscriptionTier.FREE -> stringResource(R.string.pricing_current_free)
         SubscriptionTier.PRO -> stringResource(R.string.pricing_current_pro)
-        SubscriptionTier.PREMIUM -> stringResource(R.string.pricing_current_premium)
     }
     Surface(
         shape = RoundedCornerShape(20.dp),
@@ -308,25 +289,23 @@ private fun PlanCard(
 private data class ComparisonRow(
     val labelRes: Int,
     val free: Boolean,
-    val pro: Boolean,
-    val premium: Boolean
+    val pro: Boolean
 )
 
 @Composable
 private fun ComparisonTable() {
     val rows = listOf(
-        ComparisonRow(R.string.pricing_row_timer, true, true, true),
-        ComparisonRow(R.string.pricing_row_16_8, true, true, true),
-        ComparisonRow(R.string.pricing_row_plans, false, true, true),
-        ComparisonRow(R.string.pricing_row_history, false, true, true),
-        ComparisonRow(R.string.pricing_row_stats, false, true, true),
-        ComparisonRow(R.string.pricing_row_widget, false, true, true),
-        ComparisonRow(R.string.pricing_row_reminders, true, true, true),
-        ComparisonRow(R.string.pricing_row_export, false, true, true),
-        ComparisonRow(R.string.pricing_row_health, false, false, true),
-        ComparisonRow(R.string.pricing_row_coach, false, false, true),
-        ComparisonRow(R.string.pricing_row_themes, false, true, true),
-        ComparisonRow(R.string.pricing_row_ads, false, true, true)
+        ComparisonRow(R.string.pricing_row_timer, true, true),
+        ComparisonRow(R.string.pricing_row_16_8, true, true),
+        ComparisonRow(R.string.pricing_row_reminders, true, true),
+        ComparisonRow(R.string.pricing_row_plans, false, true),
+        ComparisonRow(R.string.pricing_row_history, false, true),
+        ComparisonRow(R.string.pricing_row_stats, false, true),
+        ComparisonRow(R.string.pricing_row_widget, false, true),
+        ComparisonRow(R.string.pricing_row_health, false, true),
+        ComparisonRow(R.string.pricing_row_coach, false, true),
+        ComparisonRow(R.string.pricing_row_export, false, true),
+        ComparisonRow(R.string.pricing_row_ads, false, true)
     )
 
     Card(modifier = Modifier.fillMaxWidth()) {
@@ -339,26 +318,19 @@ private fun ComparisonTable() {
             ) {
                 Text(
                     stringResource(R.string.pricing_col_feature),
-                    modifier = Modifier.weight(1.4f),
+                    modifier = Modifier.weight(1.6f),
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.labelMedium
                 )
                 Text(
                     stringResource(R.string.pricing_col_free),
-                    modifier = Modifier.weight(0.5f),
+                    modifier = Modifier.weight(0.6f),
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.labelMedium
                 )
                 Text(
                     stringResource(R.string.pricing_col_pro),
-                    modifier = Modifier.weight(0.5f),
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.labelMedium
-                )
-                Text(
-                    stringResource(R.string.pricing_col_premium),
                     modifier = Modifier.weight(0.6f),
                     textAlign = TextAlign.Center,
                     fontWeight = FontWeight.Bold,
@@ -374,12 +346,11 @@ private fun ComparisonTable() {
                 ) {
                     Text(
                         stringResource(row.labelRes),
-                        modifier = Modifier.weight(1.4f),
+                        modifier = Modifier.weight(1.6f),
                         style = MaterialTheme.typography.bodySmall
                     )
-                    ComparisonCell(included = row.free, modifier = Modifier.weight(0.5f))
-                    ComparisonCell(included = row.pro, modifier = Modifier.weight(0.5f))
-                    ComparisonCell(included = row.premium, modifier = Modifier.weight(0.6f))
+                    ComparisonCell(included = row.free, modifier = Modifier.weight(0.6f))
+                    ComparisonCell(included = row.pro, modifier = Modifier.weight(0.6f))
                 }
                 Divider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
             }

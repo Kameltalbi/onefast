@@ -334,19 +334,19 @@ class PreferencesManager @Inject constructor(
     suspend fun setSubscriptionTier(tier: SubscriptionTier) {
         dataStore.edit { prefs ->
             prefs[SUBSCRIPTION_TIER] = tier.name
-            prefs[IS_PREMIUM_USER] = tier.hasAtLeast(SubscriptionTier.PREMIUM)
+            prefs[IS_PREMIUM_USER] = tier.hasAtLeast(SubscriptionTier.PRO)
         }
     }
 
     suspend fun isPremiumUserOnce(): Boolean =
-        getSubscriptionTierOnce().hasAtLeast(SubscriptionTier.PREMIUM)
+        getSubscriptionTierOnce().hasAtLeast(SubscriptionTier.PRO)
 
     suspend fun isProUserOnce(): Boolean =
         getSubscriptionTierOnce().hasAtLeast(SubscriptionTier.PRO)
 
     suspend fun setPremiumUser(premium: Boolean) {
         setSubscriptionTier(
-            if (premium) SubscriptionTier.PREMIUM else SubscriptionTier.FREE
+            if (premium) SubscriptionTier.PRO else SubscriptionTier.FREE
         )
     }
 
@@ -355,7 +355,7 @@ class PreferencesManager @Inject constructor(
             return SubscriptionTier.fromName(stored)
         }
         return if (prefs[IS_PREMIUM_USER] == true) {
-            SubscriptionTier.PREMIUM
+            SubscriptionTier.PRO
         } else {
             SubscriptionTier.FREE
         }

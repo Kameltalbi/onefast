@@ -25,18 +25,12 @@ class SubscriptionRepositoryImpl @Inject constructor(
     override suspend fun isProOrAbove(): Boolean =
         getTierOnce().hasAtLeast(SubscriptionTier.PRO)
 
-    override suspend fun isPremium(): Boolean =
-        getTierOnce().hasAtLeast(SubscriptionTier.PREMIUM)
-
     override fun startBillingConnection() {
         billingManager.startConnection()
     }
 
     override suspend fun purchaseProYearly(activity: Activity): Result<Unit> =
         billingManager.launchPurchase(activity, BillingProductIds.PRO_YEARLY)
-
-    override suspend fun purchasePremiumYearly(activity: Activity): Result<Unit> =
-        billingManager.launchPurchase(activity, BillingProductIds.PREMIUM_YEARLY)
 
     override suspend fun restorePurchases(): Result<SubscriptionTier> =
         billingManager.restorePurchases()

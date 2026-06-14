@@ -189,23 +189,10 @@ class PlayBillingManager @Inject constructor(
     }
 
     private fun resolveTierFromPurchases(purchases: List<Purchase>): SubscriptionTier {
-        var tier = SubscriptionTier.FREE
-        purchases
+        val hasPro = purchases
             .filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }
-            .forEach { purchase ->
-                purchase.products.forEach { productId ->
-                    tier = maxOf(
-                        tier,
-                        when {
-                            productId in BillingProductIds.PREMIUM_PRODUCTS -> SubscriptionTier.PREMIUM
-                            productId in BillingProductIds.PRO_PRODUCTS -> SubscriptionTier.PRO
-                            else -> SubscriptionTier.FREE
-                        },
-                        compareBy { it.rank }
-                    )
-                }
-            }
-        return tier
+            .any { purchase -> purchase.products.any { it in BillingProductIds.PRO_PRODUCTS } }
+        return if (hasPro) SubscriptionTier.PRO else SubscriptionTier.FREE
     }
 }
 

@@ -2,8 +2,7 @@ package com.fastflow.app.domain.model
 
 enum class SubscriptionTier(val rank: Int) {
     FREE(0),
-    PRO(1),
-    PREMIUM(2);
+    PRO(1);
 
     fun hasAtLeast(required: SubscriptionTier): Boolean = rank >= required.rank
 
@@ -16,11 +15,11 @@ enum class SubscriptionTier(val rank: Int) {
 enum class SubscriptionFeature {
     BASIC_TIMER,
     PLAN_16_8,
+    SMART_REMINDERS,
     MULTIPLE_PLANS,
     UNLIMITED_HISTORY,
     ADVANCED_STATS,
     WIDGET_LOCKSCREEN,
-    SMART_REMINDERS,
     DATA_EXPORT,
     HEALTH_SYNC,
     ADVANCED_COACHING,
@@ -38,14 +37,14 @@ object SubscriptionCapabilities {
         SubscriptionFeature.ADVANCED_STATS to SubscriptionTier.PRO,
         SubscriptionFeature.WIDGET_LOCKSCREEN to SubscriptionTier.PRO,
         SubscriptionFeature.DATA_EXPORT to SubscriptionTier.PRO,
+        SubscriptionFeature.HEALTH_SYNC to SubscriptionTier.PRO,
+        SubscriptionFeature.ADVANCED_COACHING to SubscriptionTier.PRO,
         SubscriptionFeature.UI_THEMES to SubscriptionTier.PRO,
-        SubscriptionFeature.AD_FREE to SubscriptionTier.PRO,
-        SubscriptionFeature.HEALTH_SYNC to SubscriptionTier.PREMIUM,
-        SubscriptionFeature.ADVANCED_COACHING to SubscriptionTier.PREMIUM
+        SubscriptionFeature.AD_FREE to SubscriptionTier.PRO
     )
 
     fun requiredTier(feature: SubscriptionFeature): SubscriptionTier =
-        requirements[feature] ?: SubscriptionTier.PREMIUM
+        requirements[feature] ?: SubscriptionTier.PRO
 
     fun hasAccess(tier: SubscriptionTier, feature: SubscriptionFeature): Boolean =
         tier.hasAtLeast(requiredTier(feature))
