@@ -41,7 +41,7 @@ import com.fastflow.app.presentation.theme.AccentBlue
 import com.fastflow.app.presentation.theme.AccentOrange
 import com.fastflow.app.presentation.localization.localizedName
 import com.fastflow.app.presentation.localization.localizedPlanSummary
-import com.fastflow.app.presentation.theme.PrimaryBlueNight
+import com.fastflow.app.presentation.theme.PrimaryGreen
 
 @Composable
 fun OnboardingScreen(
@@ -57,7 +57,7 @@ fun OnboardingScreen(
     LocalizedApp(languageTag = uiState.languageTag) {
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
-        containerColor = PrimaryBlueNight
+        containerColor = PrimaryGreen
     ) { padding ->
         Column(
             modifier = Modifier

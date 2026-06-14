@@ -61,9 +61,11 @@ android {
             if (keystoreProperties.containsKey("storeFile")) {
                 signingConfig = signingConfigs.getByName("release")
             }
+            buildConfigField("boolean", "FORCE_PRO", "false")
         }
         debug {
             isMinifyEnabled = false
+            buildConfigField("boolean", "FORCE_PRO", "true")
         }
     }
 
